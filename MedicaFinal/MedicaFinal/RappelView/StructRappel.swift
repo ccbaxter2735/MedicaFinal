@@ -9,12 +9,6 @@ import Foundation
 import UIKit
 import SwiftUI
 
-extension Array {
-    func arrayByAppending(o: Element) -> [Element] {
-        return self + [o]
-    }
-}
-
 // ------------------------------ ENUMERATION --------------------------------------------
 // MARK: enum type d'administration
 enum TypeAdmin: String {
