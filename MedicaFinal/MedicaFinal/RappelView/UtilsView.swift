@@ -200,51 +200,51 @@ struct showTabMedView: View {
     }
 }
 
-struct ListMedView: View {
-    @ObservedObject var medicament: TabMedicament
-    @State var tabMed: [RappelMed]
-    var bool: [Bool] = Array(repeating: false, count: 4)
-    var body: some View {
-        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
-            HStack (alignment: .center, spacing: 10) {
-                Button (action: {
-                    bool[index] = !bool[index]
-                    tabMed.append(RappelMed(med: index, dosage: 1))
-                }, label: {
-                    CheckImageView(tabM: bool[index])
-                })
-//                Text(index.name)
-//                Spacer()
-//                Text(index.detailMed)
-            }
-        }
-    }
-}
-
-struct searchMedView: View {
-    @ObservedObject var listMed: TabMedicament
-    @State var searchText = ""
-    @Binding var tabMed: [RappelMed]
-    @State var bool = false
-    var body: some View {
-        NavigationView {
-                List {
-                    ListMedView(med: listMed, tabMed: tabMed, bool: bool)
-            }
-            .navigationTitle("Médicaments")
-        }
-        .searchable(text: $searchText, prompt: "rechercher médicament")
-    }
-    var tabA: [Medicament] {
-        if searchText.isEmpty {
-            return listMed
-        } else {
-            return listMed.filter {
-                $0.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-    }
-}
+//struct ListMedView: View {
+//    @ObservedObject var medicament: TabMedicament
+//    @State var tabMed: [RappelMed]
+//    var bool: [Bool] = Array(repeating: false, count: 4)
+//    var body: some View {
+//        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
+//            HStack (alignment: .center, spacing: 10) {
+//                Button (action: {
+//                    bool[index] = !bool[index]
+//                    tabMed.append(RappelMed(med: index, dosage: 1))
+//                }, label: {
+//                    CheckImageView(tabM: bool[index])
+//                })
+////                Text(index.name)
+////                Spacer()
+////                Text(index.detailMed)
+//            }
+//        }
+//    }
+//}
+//
+//struct searchMedView: View {
+//    @ObservedObject var listMed: TabMedicament
+//    @State var searchText = ""
+//    @Binding var tabMed: [RappelMed]
+//    @State var bool = false
+//    var body: some View {
+//        NavigationView {
+//                List {
+//                    ListMedView(med: listMed, tabMed: tabMed, bool: bool)
+//            }
+//            .navigationTitle("Médicaments")
+//        }
+//        .searchable(text: $searchText, prompt: "rechercher médicament")
+//    }
+//    var tabA: [Medicament] {
+//        if searchText.isEmpty {
+//            return listMed
+//        } else {
+//            return listMed.filter {
+//                $0.name.localizedCaseInsensitiveContains(searchText)
+//            }
+//        }
+//    }
+//}
 
 //#Preview {
 ////    RappTitleView(rapp: rappel[0])

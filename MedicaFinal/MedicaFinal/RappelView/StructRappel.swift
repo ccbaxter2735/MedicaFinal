@@ -79,11 +79,8 @@ class TabMedicament: ObservableObject {
 
 // MARK: tableau de rappel vide
 class TabRappel: ObservableObject {
-    @Published var rappel: [Rappel] = []
+    @Published var rappel: [Rappel] = rappelTest
     
-    init() {
-        self.rappel = rappelTest
-    }
     
     // MARK: filtre les rappels qui sont auj et les ordonnent par heure
     func sortFilterTabRappel() -> [Rappel] {
@@ -211,13 +208,13 @@ var medicament: [Medicament] = [
 
 // MARK: Example tab de rappel
 var rappelTest: [Rappel] = [
-    Rappel(name: "Traitement epilepsie", weekday: [2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
+    Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
         RappelMed(med: medicament[0], confirm: false, dosage: 2)
     ], color: .black, finish: false, typeRappel: TypeRappel.alarme),
-    Rappel(name: "Traitement epilepsie", weekday: [2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
+    Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
         RappelMed(med: medicament[0], confirm: false, dosage: 2),
