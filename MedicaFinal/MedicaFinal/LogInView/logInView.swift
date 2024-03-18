@@ -11,6 +11,7 @@ struct logInView: View {
     @State var username: String = ""
     @State var password: String = ""
     @State var isOn = false
+    @Binding var nb: Int
     var body: some View {
         NavigationStack {
             VStack {
@@ -144,10 +145,7 @@ struct logInView: View {
                         .background(Color("AccentColor"))
                         .cornerRadius(8)
                 }
-                NavigationLink { //button
-                    TabBar()
-//                        .navigationBarBackButtonHidden(true)
-                } label: {
+                Button(action: {nb += 1}) {
                     Text("Continuer sans compte")
                     
                         .frame(width:260, height: 11)
@@ -162,13 +160,14 @@ struct logInView: View {
                             
                         )
                 }
+
                 HStack {
                     Text("Pas de compte?")
                         .fontWeight(.thin)            // make the font thinner
                         . font(. system(size: 15))
                         .foregroundColor(Color.black)  // make the color blue
                     NavigationLink (destination: {
-                        signInView()
+                        signInView(nb: $nb)
                                   .navigationBarBackButtonHidden(true)
                     }, label : {
                         Text("Créez en un")
@@ -202,5 +201,5 @@ struct logInView: View {
 
 
 #Preview {
-    logInView()
+    logInView(nb: .constant(0))
 }

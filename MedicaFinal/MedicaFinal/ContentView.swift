@@ -10,13 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @State var nb: Int = 0
     var body: some View {
-        if bool == false {
-            splashScreenView(bool: $bool)
-            
+        if (nb == 0) {
+            splashScreenView(nb: $nb)
+        } else if (nb == 1) {
+            logInView(nb: $nb)
         } else {
             TabBar()
         }
-        
     }
 }
 

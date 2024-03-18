@@ -21,7 +21,7 @@ struct splashScreenView: View {
             .frame(width:410, height: 790)
            
             if self.isActive {
-                logInView()
+                logInView(nb: $nb)
             } else {
                 
                 VStack {
@@ -47,6 +47,7 @@ struct splashScreenView: View {
                     DispatchQueue.main.asyncAfter(deadline:.now() + 2.5) {
                         withAnimation {
                             self.isActive = true
+                            nb += 1
                             
                             
                         
@@ -60,7 +61,7 @@ struct splashScreenView: View {
 }
 struct splashScreenView_Preview: PreviewProvider  {
     static var previews: some View {
-        splashScreenView(bool: .constant(false))
+        splashScreenView(nb: .constant(0))
     }
 }
 
