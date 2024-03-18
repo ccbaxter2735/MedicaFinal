@@ -205,54 +205,68 @@ struct ListMedView: View {
     @State var tabMed: [RappelMed]
     var bool: [Bool] = Array(repeating: false, count: 4)
     var body: some View {
-//        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
-//            HStack (alignment: .center, spacing: 10) {
-//                Button (action: {
-//                    bool[index] = !bool[index]
-//                    tabMed.append(RappelMed(med: index, dosage: 1))
-//                }, label: {
-//                    CheckImageView(tabM: bool[index])
-//                })
-                Text("index.name")
-                Spacer()
-                Text("index.detailMed")
-//            }
-//        }
+        //        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
+        //            HStack (alignment: .center, spacing: 10) {
+        //                Button (action: {
+        //                    bool[index] = !bool[index]
+        //                    tabMed.append(RappelMed(med: index, dosage: 1))
+        //                }, label: {
+        //                    CheckImageView(tabM: bool[index])
+        //                })
+        Text("index.name")
+        Spacer()
+        Text("index.detailMed")
+        //            }
+        //        }
     }
 }
 
 struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
-    @State var tabMed: [RappelMed]
+    @ObservedObject var tabMed: TabRappelMed
     @State var searchText = ""
-    @State var multiSelection = Set<UUID>()
+    @State var multiSelection = Set<String>()
     var body: some View {
         NavigationView {
-            List (listMed.med, selection: $multiSelection) { index in
-                Text(index.name)
-            }
-            .navigationTitle("Médicaments")
-            .toolbar {
-                 EditButton()
-             }
-        }
-        .searchable(text: $searchText, prompt: "rechercher médicament")
-    }
-    var tabA: [Medicament] {
-        if searchText.isEmpty {
-            return listMed.med
-        } else {
-            return listMed.med.filter {
-                $0.name.localizedCaseInsensitiveContains(searchText)
+            List (listMed.med.enumerated().map { $0.element }, id: \.self) { item in
+                Toggle(isOn: Binding<Bool>(
+                    get: {
+                        self.multiSelection.contains(item)
+                    },
+                    set: { _ in
+                        if self.multiSelection.contains(item) {
+                            self.multiSelection.remove(item)
+                        } else {
+                            self.multiSelection.insert(item)
+                        }
+                    }
+                )) {
+                    Text(item)
+                }
+                .navigationBarTitle("Selection des médicaments")
             }
         }
     }
 }
-
-//#Preview {
-////    RappTitleView(rapp: rappel[0])
-////    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
-////    CircleChoixJours(text: "Lun")
-////    CircledText(text: "lun", test: false)
-////    searchMedView(listMed: baseDonneesMed)
-//}
+                
+//            }
+//            .searchable(text: $searchText, prompt: "rechercher médicament")
+//        }
+//        var tabA: [Medicament] {
+//            if searchText.isEmpty {
+//                return listMed.med
+//            } else {
+//                return listMed.med.filter {
+//                    $0.name.localizedCaseInsensitiveContains(searchText)
+//                }
+//            }
+//        }
+//    }
+    
+    //#Preview {
+    ////    RappTitleView(rapp: rappel[0])
+    ////    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+    ////    CircleChoixJours(text: "Lun")
+    ////    CircledText(text: "lun", test: false)
+    ////    searchMedView(listMed: baseDonneesMed)
+    //}

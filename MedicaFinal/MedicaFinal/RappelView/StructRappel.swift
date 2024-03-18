@@ -64,6 +64,11 @@ struct Medicament: Identifiable, Hashable {
 }
 
 // ------------------------------ CLASSE DE DONNEES --------------------------------------
+// MARK: tableau de rappelMed vide
+class TabRappelMed: ObservableObject {
+    @Published var rappelMed: [RappelMed] = []
+}
+
 // MARK: tableau de medicament vide
 class TabMedicament: ObservableObject {
     @Published var med: [Medicament] = baseDonneesMed
@@ -109,11 +114,19 @@ class RappelMed: Identifiable, ObservableObject {
     @Published var confirm: Bool
     @Published var dosage: Int
     
-    init(id: UUID = UUID(), med: Medicament, confirm: Bool = false, dosage: Int) {
+    init(id: UUID = UUID(), med: Medicament, confirm: Bool = false, dosage: Int = 0) {
         self.id = id
         self.med = med
         self.confirm = confirm
         self.dosage = dosage
+    }
+    
+    func incrementStep() {
+        self.dosage += 1
+    }
+    
+    func decrementStep() {
+        self.dosage -= 1
     }
 }
 

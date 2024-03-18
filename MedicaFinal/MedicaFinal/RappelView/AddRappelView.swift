@@ -16,9 +16,10 @@ struct addRappelView: View {
     @State var state: [Bool] = Array(repeating: false, count: 7)
     @State var weekday: [Int] = []
     @State var hPrise: String = ""
-    @State var tabMed: [RappelMed] = []
-    @State var typeRappel: TypeRappel = TypeRappel.alarme
     
+    @State var tabMed: TabRappelMed = TabRappelMed()
+    
+    @State var selectedType: TypeRappel = TypeRappel.alarme
     @State var selectedTime = Date()
     
     func transformDateToHourMin(date: Date) -> String {
@@ -31,7 +32,7 @@ struct addRappelView: View {
     
     // ------------- body addRappelView ----------------
     var body: some View {
-        VStack(content: {
+        VStack(alignment: .leading, content: {
             // --- input rappel information ---
             // nom du rappel
             inputFieldLogin(data: $name, title: "Intitulé du rappel")
@@ -69,20 +70,46 @@ struct addRappelView: View {
             }
             .padding()
             // tableau de med
-            NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
-                // MARK: vue d'ajout de rappel
-                Text("+ Ajouter médicament")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.accentColor)
-                    .cornerRadius(10)
+            HStack {
+                Text("Médicaments du rappel:")
+                    .font(.headline)
+                    .fontWeight(.thin)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .background(.gray.opacity(0.0))
+                NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
+                    // MARK: vue d'ajout de rappel
+                    Text("Ajouter médicament")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
+                }
+                ForEach(tabMed.rappelMed) { tab in
+                    TabRappelMedView(med: tab)
+                }
+                .padding()
             }
-            
+
+            // choix type de rappel
+//            HStack (alignment: .center) {
+//                Text("Type de rappel:")
+//                    .font(.headline)
+//                    .fontWeight(.thin)
+//                    .foregroundColor(Color.black)
+//                    .multilineTextAlignment(.leading)
+//                    .background(.gray.opacity(0.0))
+//                Picker("test", selection: $selectedType) {
+//                    ForEach(TypeRappel.Type) { opt in
+//                        Text("\(opt.rawValue)")
+//                    }
+//                }
+//            }
             
             // Bouton ajouter append données de newRappel vers tabRappel
             Spacer()
             Button() {
-                newRappel.addRappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, typeRappel: typeRappel)
+                newRappel.addRappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: selectedType)
                 presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")
@@ -91,6 +118,7 @@ struct addRappelView: View {
                     .background(Color.accentColor).cornerRadius(10)
                 }
         })
+        .padding()
     }
 }
 

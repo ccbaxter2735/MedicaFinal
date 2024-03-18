@@ -35,6 +35,7 @@
 		6F3D22932BA746A800ABE42B /* StructRappel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22922BA746A800ABE42B /* StructRappel.swift */; };
 		6F3D22952BA746B700ABE42B /* UtilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22942BA746B700ABE42B /* UtilsView.swift */; };
 		6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FEF8F2BA85108006F8A87 /* TabBar.swift */; };
+		6FA18ACD2BA890D8000F048E /* TabRappelMedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		6F3D22922BA746A800ABE42B /* StructRappel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRappel.swift; sourceTree = "<group>"; };
 		6F3D22942BA746B700ABE42B /* UtilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsView.swift; sourceTree = "<group>"; };
 		6F6FEF8F2BA85108006F8A87 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRappelMedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				6F2337FE2BA7554F0058E6C3 /* CheckRappelView.swift */,
 				6F3D22922BA746A800ABE42B /* StructRappel.swift */,
 				6F3D22942BA746B700ABE42B /* UtilsView.swift */,
+				6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */,
 			);
 			path = RappelView;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				6F3D22712BA7421D00ABE42B /* Ordonnance.swift in Sources */,
 				6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */,
 				6F3D226F2BA741F200ABE42B /* OrdoClass.swift in Sources */,
+				6FA18ACD2BA890D8000F048E /* TabRappelMedView.swift in Sources */,
 				6F3D226D2BA740C700ABE42B /* OrdoView.swift in Sources */,
 				6F3D22752BA7428300ABE42B /* OCRView.swift in Sources */,
 				6F3D22872BA744F300ABE42B /* InfoMedView.swift in Sources */,
