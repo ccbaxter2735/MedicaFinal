@@ -35,6 +35,10 @@ struct splashScreenView: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.white)
                         .padding(.vertical, 20)
+                    Text("Le bon médicament toujours au bon moment")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 20)
                     
                 }
             }
