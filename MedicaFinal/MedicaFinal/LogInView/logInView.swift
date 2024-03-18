@@ -144,7 +144,10 @@ struct logInView: View {
                         .background(Color("AccentColor"))
                         .cornerRadius(8)
                 }
-                Button(action: {}) {
+                NavigationLink {
+                    TabBar()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
                     Text("Continuer sans compte")
                     
                         .frame(width:260, height: 11)
