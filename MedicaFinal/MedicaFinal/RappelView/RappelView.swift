@@ -146,7 +146,7 @@ struct addRappelView: View {
             .padding()
             // tableau de med
             NavigationLink {
-                searchMedView(listMed: tabMedicament, tabMed: $tabMed)
+//                searchMedView(listMed: tabMedicament, tabMed: $tabMed)
             } label: {
                 VStack {
                     Text("Liste des médicaments")
