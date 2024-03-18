@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInLogInView: View {
+    @Binding var nb: Int
     var body: some View {
         NavigationStack {
             ZStack {
@@ -28,7 +29,7 @@ struct SignInLogInView: View {
                     
                     // Button(action: {}) {
                     NavigationLink(destination: {
-                                    logInView()
+                        logInView(nb: $nb)
                                    }, label:  {
                     Text("Continuer avec un compte")
                         .fontWeight(.heavy)
@@ -65,7 +66,7 @@ struct SignInLogInView: View {
 }
 struct SignInLogInView_Preview: PreviewProvider {
     static var previews: some View {
-        SignInLogInView()
+        SignInLogInView(nb: .constant(0))
     }
 }
 

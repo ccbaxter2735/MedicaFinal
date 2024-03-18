@@ -13,6 +13,7 @@ struct signInView: View {
     @State var password: String = ""
     @State var confirmPW: String = ""
     @State var isOn = false
+    @Binding var nb: Int
     
     var body: some View {
         NavigationStack {
@@ -150,7 +151,7 @@ struct signInView: View {
                 }
                 HStack {
                     NavigationLink (destination: {
-                        logInView()
+                        logInView(nb: $nb)
                             .navigationBarBackButtonHidden(true)
                     }, label : {
                         
@@ -176,5 +177,5 @@ struct signInView: View {
 }
 
 #Preview {
-    signInView()
+    signInView(nb: .constant(1))
 }

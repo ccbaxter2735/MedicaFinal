@@ -8,49 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    // pour l'instant j'ai mis la TabBar directement à la racine de l'application mais si vous voulez faire autrement je peux la modifier
-//    @EnvironmentObject var tabRappel: TabRappel
+    @State var nb: Int = 0
     var body: some View {
-        TabView {
-            RappelView()
-                .tabItem {
-                    Label(
-                        title: { Text("Rappel") },
-                        icon: { Image(systemName: "bell")}
-                            
-                    )
-                   
-                }
-                
-                
-                
-//            Calview()
-//                .tabItem {
-//                    Label(
-//                        title: { Text("Calendrier") },
-//                        icon: { Image(systemName: "calendar")}
-//                    )
-//                }
-           CopyOrdoView()
-                .tabItem {
-                    Label(
-                        title: { Text("Ordonnance") },
-                        icon: { Image(systemName: "doc")}
-                    )
-                }
-//            ProfilView()
-//                .tabItem {
-//                    Label(
-//                        title: { Text("info") },
-//                        icon: { Image(systemName: "info")}
-//                    )
-//                }
+        if (nb == 0) {
+            splashScreenView(nb: $nb)
+        } else if (nb == 1) {
+            logInView(nb: $nb)
+        } else {
+            TabBar()
         }
-        
-        
-        
     }
-    
 }
 
 #Preview {

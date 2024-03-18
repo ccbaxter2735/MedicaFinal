@@ -9,11 +9,11 @@ import SwiftUI
 
 struct splashScreenView: View {
     
+    @Binding var nb: Int
     @State var isActive: Bool = false
     @State private var showDetails = false
     var body: some View {
         
-       
         ZStack {
            
             Rectangle()
@@ -21,7 +21,7 @@ struct splashScreenView: View {
             .frame(width:410, height: 790)
            
             if self.isActive {
-                logInView()
+                logInView(nb: $nb)
             } else {
                 
                 VStack {
@@ -35,6 +35,10 @@ struct splashScreenView: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.white)
                         .padding(.vertical, 20)
+                    Text("Le bon médicament toujours au bon moment")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 20)
                     
                 }
             }
@@ -43,6 +47,7 @@ struct splashScreenView: View {
                     DispatchQueue.main.asyncAfter(deadline:.now() + 2.5) {
                         withAnimation {
                             self.isActive = true
+                            nb += 1
                             
                             
                         
@@ -56,7 +61,7 @@ struct splashScreenView: View {
 }
 struct splashScreenView_Preview: PreviewProvider  {
     static var previews: some View {
-        splashScreenView()
+        splashScreenView(nb: .constant(0))
     }
 }
 
