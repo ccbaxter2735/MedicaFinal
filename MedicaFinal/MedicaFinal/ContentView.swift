@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     // pour l'instant j'ai mis la TabBar directement à la racine de l'application mais si vous voulez faire autrement je peux la modifier
-//    @StateObject var tabRappel: TabRappel = TabRappel()
+//    @EnvironmentObject var tabRappel: TabRappel
     var body: some View {
         TabView {
-            RappelView().environmentObject(TabRappel())
+            RappelView()
                 .tabItem {
                     Label(
                         title: { Text("Rappel") },

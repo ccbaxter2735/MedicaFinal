@@ -200,11 +200,11 @@ struct showTabMedView: View {
     }
 }
 
-//struct ListMedView: View {
-//    @ObservedObject var medicament: TabMedicament
-//    @State var tabMed: [RappelMed]
-//    var bool: [Bool] = Array(repeating: false, count: 4)
-//    var body: some View {
+struct ListMedView: View {
+    @ObservedObject var medicament: TabMedicament
+    @State var tabMed: [RappelMed]
+    var bool: [Bool] = Array(repeating: false, count: 4)
+    var body: some View {
 //        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
 //            HStack (alignment: .center, spacing: 10) {
 //                Button (action: {
@@ -213,23 +213,23 @@ struct showTabMedView: View {
 //                }, label: {
 //                    CheckImageView(tabM: bool[index])
 //                })
-////                Text(index.name)
-////                Spacer()
-////                Text(index.detailMed)
+                Text("index.name")
+                Spacer()
+                Text("index.detailMed")
 //            }
 //        }
-//    }
-//}
-//
+    }
+}
+
 //struct searchMedView: View {
 //    @ObservedObject var listMed: TabMedicament
+//    @State var tabMed: [RappelMed]
 //    @State var searchText = ""
-//    @Binding var tabMed: [RappelMed]
 //    @State var bool = false
 //    var body: some View {
 //        NavigationView {
 //                List {
-//                    ListMedView(med: listMed, tabMed: tabMed, bool: bool)
+//                    
 //            }
 //            .navigationTitle("Médicaments")
 //        }

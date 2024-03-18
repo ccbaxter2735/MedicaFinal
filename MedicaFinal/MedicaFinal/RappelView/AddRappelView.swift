@@ -11,6 +11,7 @@ struct addRappelView: View {
     // ------------- var addRappelView -----------------
     
     @ObservedObject var newRappel: TabRappel
+    @ObservedObject var tabMedicament: TabMedicament
     @State var name: String = ""
     @State var state: [Bool] = Array(repeating: false, count: 7)
     @State var weekday: [Int] = []
@@ -68,6 +69,15 @@ struct addRappelView: View {
             }
             .padding()
             // tableau de med
+//            NavigationLink(destination: searchMedView(tabMed: tabMed, newRappel, tabMedicament: tabMedicament)) {
+//                // MARK: vue d'ajout de rappel
+//                Text("+ Ajouter médicament")
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(Color.accentColor)
+//                    .cornerRadius(10)
+//            }
+            
             
             // Bouton ajouter append données de newRappel vers tabRappel
             Spacer()
@@ -85,5 +95,5 @@ struct addRappelView: View {
 }
 
 #Preview {
-    addRappelView(newRappel: TabRappel())
+    addRappelView(newRappel: TabRappel(), tabMedicament: TabMedicament())
 }
