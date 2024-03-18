@@ -54,10 +54,6 @@ struct CopyOrdoView: View {
                     } // ForEach
                 } // List
             }
-            
-            
-            
-            
             .navigationTitle("Liste des ordonances")
             
             NavigationLink{

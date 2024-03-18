@@ -200,7 +200,7 @@ struct showTabMedView: View {
     }
 }
 
-struct ListMedView: View {
+/*struct ListMedView: View {
     @ObservedObject var medicament: TabMedicament
     @State var tabMed: [RappelMed]
     var bool: [Bool] = Array(repeating: false, count: 4)
@@ -219,9 +219,9 @@ struct ListMedView: View {
             }
         }
     }
-}
+} */
 
-struct searchMedView: View {
+/* struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
     @State var searchText = ""
     @Binding var tabMed: [RappelMed]
@@ -244,7 +244,7 @@ struct searchMedView: View {
             }
         }
     }
-}
+} */
 
 //#Preview {
 ////    RappTitleView(rapp: rappel[0])

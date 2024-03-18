@@ -145,7 +145,7 @@ struct addRappelView: View {
             }
             .padding()
             // tableau de med
-            NavigationLink {
+          /*  NavigationLink {
                 searchMedView(listMed: tabMedicament, tabMed: $tabMed)
             } label: {
                 VStack {
@@ -161,7 +161,7 @@ struct addRappelView: View {
                         .background(Color.accentColor)
                         .cornerRadius(10)
                 }
-            }
+            } */
             // Bouton ajouter append données de newRappel vers tabRappel
 //            Spacer()
             NavigationLink(destination: RappelView(tabRappel: newRappel, tabMedicament: tabMedicament)) {
