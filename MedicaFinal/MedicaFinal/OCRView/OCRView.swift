@@ -28,6 +28,7 @@ struct OCRView: View {
                         Text("No scan yet").font(.title)
                     }
                 }
+               
                     .navigationTitle("Scan OCR")
                     .navigationBarItems(trailing: Button(action: {
                         self.showScannerSheet = true
@@ -36,10 +37,15 @@ struct OCRView: View {
                             .font(.title)
                     })
                     .sheet(isPresented: $showScannerSheet, content: {
-                        self.makeScannerView()
+                        // self.makeScannerView()
+                        Image("ordonnance")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:600)
                     })
                     )
             }
+            
         }
         private func makeScannerView()-> ScannerView {
             ScannerView(completion: {
