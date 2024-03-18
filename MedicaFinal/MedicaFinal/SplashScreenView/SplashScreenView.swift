@@ -9,11 +9,11 @@ import SwiftUI
 
 struct splashScreenView: View {
     
+    @Binding var nb: Int
     @State var isActive: Bool = false
     @State private var showDetails = false
     var body: some View {
         
-       
         ZStack {
            
             Rectangle()
@@ -60,7 +60,7 @@ struct splashScreenView: View {
 }
 struct splashScreenView_Preview: PreviewProvider  {
     static var previews: some View {
-        splashScreenView()
+        splashScreenView(bool: .constant(false))
     }
 }
 

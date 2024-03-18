@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    // pour l'instant j'ai mis la TabBar directement à la racine de l'application mais si vous voulez faire autrement je peux la modifier
-
+    @State var nb: Int = 0
     var body: some View {
-        splashScreenView()
+        if bool == false {
+            splashScreenView(bool: $bool)
+            
+        } else {
+            TabBar()
+        }
         
     }
-    
 }
 
 #Preview {
