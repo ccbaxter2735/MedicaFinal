@@ -11,6 +11,8 @@
 		6F1DD1722BA51B73003B19F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1DD1712BA51B73003B19F5 /* ContentView.swift */; };
 		6F1DD1742BA51B74003B19F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DD1732BA51B74003B19F5 /* Assets.xcassets */; };
 		6F1DD1772BA51B74003B19F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1DD1762BA51B74003B19F5 /* Preview Assets.xcassets */; };
+		6F2337FF2BA7554F0058E6C3 /* CheckRappelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2337FE2BA7554F0058E6C3 /* CheckRappelView.swift */; };
+		6F2338012BA783AF0058E6C3 /* AddRappelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2338002BA783AF0058E6C3 /* AddRappelView.swift */; };
 		6F3D226D2BA740C700ABE42B /* OrdoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D226C2BA740C700ABE42B /* OrdoView.swift */; };
 		6F3D226F2BA741F200ABE42B /* OrdoClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D226E2BA741F200ABE42B /* OrdoClass.swift */; };
 		6F3D22712BA7421D00ABE42B /* Ordonnance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22702BA7421D00ABE42B /* Ordonnance.swift */; };
@@ -20,7 +22,7 @@
 		6F3D22792BA742CB00ABE42B /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22782BA742CB00ABE42B /* ScannerView.swift */; };
 		6F3D227B2BA7430600ABE42B /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D227A2BA7430600ABE42B /* TextRecognizer.swift */; };
 		6F3D227D2BA743A900ABE42B /* SignInLogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D227C2BA743A900ABE42B /* SignInLogInView.swift */; };
-		6F3D227F2BA743DF00ABE42B /* SpashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D227E2BA743DF00ABE42B /* SpashScreenView.swift */; };
+		6F3D227F2BA743DF00ABE42B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D227E2BA743DF00ABE42B /* SplashScreenView.swift */; };
 		6F3D22812BA7441300ABE42B /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22802BA7441300ABE42B /* SignInView.swift */; };
 		6F3D22832BA7447700ABE42B /* inputFieldLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22822BA7447700ABE42B /* inputFieldLogin.swift */; };
 		6F3D22852BA744AC00ABE42B /* logInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22842BA744AC00ABE42B /* logInView.swift */; };
@@ -32,6 +34,7 @@
 		6F3D22912BA7469800ABE42B /* RappelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22902BA7469800ABE42B /* RappelView.swift */; };
 		6F3D22932BA746A800ABE42B /* StructRappel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22922BA746A800ABE42B /* StructRappel.swift */; };
 		6F3D22952BA746B700ABE42B /* UtilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22942BA746B700ABE42B /* UtilsView.swift */; };
+		6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FEF8F2BA85108006F8A87 /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,8 @@
 		6F1DD1712BA51B73003B19F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6F1DD1732BA51B74003B19F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1DD1762BA51B74003B19F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6F2337FE2BA7554F0058E6C3 /* CheckRappelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRappelView.swift; sourceTree = "<group>"; };
+		6F2338002BA783AF0058E6C3 /* AddRappelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRappelView.swift; sourceTree = "<group>"; };
 		6F3D226C2BA740C700ABE42B /* OrdoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdoView.swift; sourceTree = "<group>"; };
 		6F3D226E2BA741F200ABE42B /* OrdoClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdoClass.swift; sourceTree = "<group>"; };
 		6F3D22702BA7421D00ABE42B /* Ordonnance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordonnance.swift; sourceTree = "<group>"; };
@@ -49,7 +54,7 @@
 		6F3D22782BA742CB00ABE42B /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		6F3D227A2BA7430600ABE42B /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
 		6F3D227C2BA743A900ABE42B /* SignInLogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInLogInView.swift; sourceTree = "<group>"; };
-		6F3D227E2BA743DF00ABE42B /* SpashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpashScreenView.swift; sourceTree = "<group>"; };
+		6F3D227E2BA743DF00ABE42B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		6F3D22802BA7441300ABE42B /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6F3D22822BA7447700ABE42B /* inputFieldLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputFieldLogin.swift; sourceTree = "<group>"; };
 		6F3D22842BA744AC00ABE42B /* logInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logInView.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		6F3D22902BA7469800ABE42B /* RappelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RappelView.swift; sourceTree = "<group>"; };
 		6F3D22922BA746A800ABE42B /* StructRappel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRappel.swift; sourceTree = "<group>"; };
 		6F3D22942BA746B700ABE42B /* UtilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsView.swift; sourceTree = "<group>"; };
+		6F6FEF8F2BA85108006F8A87 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 				6F1DD1712BA51B73003B19F5 /* ContentView.swift */,
 				6F1DD1732BA51B74003B19F5 /* Assets.xcassets */,
 				6F1DD1752BA51B74003B19F5 /* Preview Content */,
+				6F6FEF8F2BA85108006F8A87 /* TabBar.swift */,
 			);
 			path = MedicaFinal;
 			sourceTree = "<group>";
@@ -179,6 +186,8 @@
 			children = (
 				6F3D228E2BA7468B00ABE42B /* RappelTestView.swift */,
 				6F3D22902BA7469800ABE42B /* RappelView.swift */,
+				6F2338002BA783AF0058E6C3 /* AddRappelView.swift */,
+				6F2337FE2BA7554F0058E6C3 /* CheckRappelView.swift */,
 				6F3D22922BA746A800ABE42B /* StructRappel.swift */,
 				6F3D22942BA746B700ABE42B /* UtilsView.swift */,
 			);
@@ -197,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				6F3D227C2BA743A900ABE42B /* SignInLogInView.swift */,
-				6F3D227E2BA743DF00ABE42B /* SpashScreenView.swift */,
+				6F3D227E2BA743DF00ABE42B /* SplashScreenView.swift */,
 			);
 			path = SplashScreenView;
 			sourceTree = "<group>";
@@ -276,11 +285,12 @@
 				6F3D228D2BA7460800ABE42B /* ProfilView.swift in Sources */,
 				6F3D228B2BA745F000ABE42B /* CalView.swift in Sources */,
 				6F3D22772BA742A900ABE42B /* ScanData.swift in Sources */,
-				6F3D227F2BA743DF00ABE42B /* SpashScreenView.swift in Sources */,
+				6F3D227F2BA743DF00ABE42B /* SplashScreenView.swift in Sources */,
 				6F3D22852BA744AC00ABE42B /* logInView.swift in Sources */,
 				6F3D228F2BA7468B00ABE42B /* RappelTestView.swift in Sources */,
 				6F3D227B2BA7430600ABE42B /* TextRecognizer.swift in Sources */,
 				6F3D22712BA7421D00ABE42B /* Ordonnance.swift in Sources */,
+				6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */,
 				6F3D226F2BA741F200ABE42B /* OrdoClass.swift in Sources */,
 				6F3D226D2BA740C700ABE42B /* OrdoView.swift in Sources */,
 				6F3D22752BA7428300ABE42B /* OCRView.swift in Sources */,
@@ -293,7 +303,9 @@
 				6F3D22892BA7450600ABE42B /* DetailsView.swift in Sources */,
 				6F3D227D2BA743A900ABE42B /* SignInLogInView.swift in Sources */,
 				6F3D22812BA7441300ABE42B /* SignInView.swift in Sources */,
+				6F2337FF2BA7554F0058E6C3 /* CheckRappelView.swift in Sources */,
 				6F3D22932BA746A800ABE42B /* StructRappel.swift in Sources */,
+				6F2338012BA783AF0058E6C3 /* AddRappelView.swift in Sources */,
 				6F3D22912BA7469800ABE42B /* RappelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

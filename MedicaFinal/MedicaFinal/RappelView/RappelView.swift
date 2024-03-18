@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: vue global de rappel
 struct RappelView: View {
     // ------------- var RappelView -----------------
-    @ObservedObject var tabRappel: TabRappel
-    @ObservedObject var tabMedicament: TabMedicament
+    var tabRappel: TabRappel = TabRappel()
+    var tabMedicament: TabMedicament = TabMedicament()
     
     // ---------- function RappelView ---------------
     func screenToday() -> String {
@@ -37,11 +37,9 @@ struct RappelView: View {
                     }
                     .background(.thinMaterial)
                     Spacer()
-                    NavigationLink {
+                    NavigationLink(destination: addRappelView(newRappel: tabRappel, tabMedicament: tabMedicament)) {
                         // MARK: vue d'ajout de rappel
-                        addRappelView(newRappel: tabRappel, tabMedicament: tabMedicament)
-                    } label: {
-                        Text("Ajouter rappel")
+                        Text("Créer nouveau rappel")
                             .padding()
                             .foregroundColor(.white)
                             .background(Color.accentColor)
@@ -55,6 +53,7 @@ struct RappelView: View {
 }
 
 #Preview {
+<<<<<<< HEAD
     RappelView(tabRappel: TabRappel(), tabMedicament: TabMedicament())
 }
 
@@ -185,4 +184,7 @@ struct addRappelView: View {
 //            }
         })
     }
+=======
+    RappelView(tabRappel: TabRappel())
+>>>>>>> main
 }
