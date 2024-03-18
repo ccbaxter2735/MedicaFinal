@@ -221,30 +221,33 @@ struct ListMedView: View {
     }
 }
 
-//struct searchMedView: View {
-//    @ObservedObject var listMed: TabMedicament
-//    @State var tabMed: [RappelMed]
-//    @State var searchText = ""
-//    @State var bool = false
-//    var body: some View {
-//        NavigationView {
-//                List {
-//                    
-//            }
-//            .navigationTitle("Médicaments")
-//        }
-//        .searchable(text: $searchText, prompt: "rechercher médicament")
-//    }
-//    var tabA: [Medicament] {
-//        if searchText.isEmpty {
-//            return listMed
-//        } else {
-//            return listMed.filter {
-//                $0.name.localizedCaseInsensitiveContains(searchText)
-//            }
-//        }
-//    }
-//}
+struct searchMedView: View {
+    @ObservedObject var listMed: TabMedicament
+    @State var tabMed: [RappelMed]
+    @State var searchText = ""
+    @State var multiSelection = Set<UUID>()
+    var body: some View {
+        NavigationView {
+            List (listMed.med, selection: $multiSelection) { index in
+                Text(index.name)
+            }
+            .navigationTitle("Médicaments")
+            .toolbar {
+                 EditButton()
+             }
+        }
+        .searchable(text: $searchText, prompt: "rechercher médicament")
+    }
+    var tabA: [Medicament] {
+        if searchText.isEmpty {
+            return listMed.med
+        } else {
+            return listMed.med.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+}
 
 //#Preview {
 ////    RappTitleView(rapp: rappel[0])

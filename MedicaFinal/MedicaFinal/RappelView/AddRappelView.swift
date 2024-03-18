@@ -69,14 +69,14 @@ struct addRappelView: View {
             }
             .padding()
             // tableau de med
-//            NavigationLink(destination: searchMedView(tabMed: tabMed, newRappel, tabMedicament: tabMedicament)) {
-//                // MARK: vue d'ajout de rappel
-//                Text("+ Ajouter médicament")
-//                    .padding()
-//                    .foregroundColor(.white)
-//                    .background(Color.accentColor)
-//                    .cornerRadius(10)
-//            }
+            NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
+                // MARK: vue d'ajout de rappel
+                Text("+ Ajouter médicament")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.accentColor)
+                    .cornerRadius(10)
+            }
             
             
             // Bouton ajouter append données de newRappel vers tabRappel
