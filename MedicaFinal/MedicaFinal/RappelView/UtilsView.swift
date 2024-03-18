@@ -200,19 +200,11 @@ struct showTabMedView: View {
     }
 }
 
-<<<<<<< HEAD
-/*struct ListMedView: View {
+struct ListMedView: View {
     @ObservedObject var medicament: TabMedicament
     @State var tabMed: [RappelMed]
     var bool: [Bool] = Array(repeating: false, count: 4)
     var body: some View {
-=======
-//struct ListMedView: View {
-    //@ObservedObject var medicament: TabMedicament
-   // @State var tabMed: [RappelMed]
-    //var bool: [Bool] = Array(repeating: false, count: 4)
-   // var body: some View {
->>>>>>> delphine
 //        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
 //            HStack (alignment: .center, spacing: 10) {
 //                Button (action: {
@@ -221,16 +213,15 @@ struct showTabMedView: View {
 //                }, label: {
 //                    CheckImageView(tabM: bool[index])
 //                })
-<<<<<<< HEAD
                 Text("index.name")
                 Spacer()
                 Text("index.detailMed")
 //            }
 //        }
     }
-} */
+}
 
-/* struct searchMedView: View {
+struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
     @State var tabMed: [RappelMed]
     @State var searchText = ""
@@ -256,41 +247,7 @@ struct showTabMedView: View {
             }
         }
     }
-} */
-=======
-////                Text(index.name)
-////                Spacer()
-////                Text(index.detailMed)
-//            }
-//        }
-//    }
-//}
-
-//struct searchMedView: View {
-//    @ObservedObject var listMed: TabMedicament
-//    @State var searchText = ""
-//    @Binding var tabMed: [RappelMed]
-//    @State var bool = false
-//    var body: some View {
-//        NavigationView {
-//                List {
-//                    ListMedView(med: listMed, tabMed: tabMed, bool: bool)
-//            }
-//            .navigationTitle("Médicaments")
-//        }
-//        .searchable(text: $searchText, prompt: "rechercher médicament")
-//    }
-//    var tabA: [Medicament] {
-//        if searchText.isEmpty {
-//            return listMed
-//        } else {
-//            return listMed.filter {
-//                $0.name.localizedCaseInsensitiveContains(searchText)
-//            }
-//        }
-//    }
-//}
->>>>>>> delphine
+}
 
 //#Preview {
 ////    RappTitleView(rapp: rappel[0])
