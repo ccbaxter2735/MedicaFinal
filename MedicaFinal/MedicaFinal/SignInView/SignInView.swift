@@ -44,7 +44,10 @@ struct signInView: View {
             Spacer()
                 HStack {
                     VStack {
-                        Button(action: {}) {
+                        Button(action: {
+                            AccessibilityNotification.Announcement("Connection Google")
+                                .post()
+                        }) {
                             Text("G")
                                 .frame(width:20, height: 20)
                                 .padding()
@@ -66,7 +69,10 @@ struct signInView: View {
                     Spacer()
                     
                     VStack {
-                    Button(action: {}) {
+                    Button(action: {
+                        AccessibilityNotification.Announcement("Connection Apple")
+                            .post()
+                    }) {
                         Text("")
                             .font(.system(size: 32))
                             .frame(width:20, height: 20)
@@ -88,7 +94,10 @@ struct signInView: View {
                     Spacer()
                     
                     VStack {
-                    Button(action: {}) {
+                    Button(action: {
+                        AccessibilityNotification.Announcement("Connection Facebook")
+                            .post()
+                    }) {
                         Text("F")
                             .frame(width:20, height: 20)
                             .padding()
@@ -140,7 +149,10 @@ struct signInView: View {
                     .padding(.leading, 60)
                     .padding(.bottom, 20)// extrac space to the top to sign in button
               
-                Button(action: {}) {
+                Button(action: {
+                    AccessibilityNotification.Announcement("Se connecter")
+                        .post()
+                }) {
                     Text("Se connecter")
                       
                         .frame(width:260, height: 11)
@@ -153,6 +165,7 @@ struct signInView: View {
                     NavigationLink (destination: {
                         logInView(nb: $nb)
                             .navigationBarBackButtonHidden(true)
+                        
                     }, label : {
                         
                        Text("Déjà un compte?")

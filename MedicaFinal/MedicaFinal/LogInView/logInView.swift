@@ -42,67 +42,85 @@ struct logInView: View {
                 
                 HStack {
                     VStack {
-                        Button(action: {}) {
-                            Text("G")
-                                .frame(width:20, height: 20)
-                                .padding()
-                                .foregroundColor(Color("AccentColor"))
-                                .background(.white)
-                                .cornerRadius(50)
-                                .background(
-                                    RoundedRectangle(
-                                        cornerRadius: 50,
-                                        style: .continuous
+                        Button(action: {
+                            AccessibilityNotification.Announcement("Connection Google")
+                                .post()
+                        }) {
+                            VStack {
+                                Text("G")
+                                    .frame(width:20, height: 20)
+                                    .padding()
+                                    .foregroundColor(Color("AccentColor"))
+                                    .background(.white)
+                                    .cornerRadius(50)
+                                    .background(
+                                        RoundedRectangle(
+                                            cornerRadius: 50,
+                                            style: .continuous
+                                        )
+                                        .stroke(Color("AccentColor"), lineWidth: 3)
                                     )
-                                    .stroke(Color("AccentColor"), lineWidth: 3)
-                                )
+                                Text("Google")
+                                    .font(.caption)
+                            }
                         }
-                        Text("Google")
-                            .font(.caption)
+                
                     }
                     .padding(.leading, 60)
                     Spacer()
                     
                     VStack {
-                        Button(action: {}) {
-                            Text("")
-                                .font(.system(size: 32))
-                                .frame(width:20, height: 20)
-                                .padding()
-                                .foregroundColor(Color("AccentColor"))
-                                .background(.white)
-                                .cornerRadius(50)
-                                .background(
-                                    RoundedRectangle(
-                                        cornerRadius: 50,
-                                        style: .continuous
+                        Button(action: {
+                            AccessibilityNotification.Announcement("Connection Apple")
+                                .post()
+                        }) {
+                            VStack {
+                                Text("")
+                                    .font(.system(size: 32))
+                                    .frame(width:20, height: 20)
+                                    .padding()
+                                    .foregroundColor(Color("AccentColor"))
+                                    .background(.white)
+                                    .cornerRadius(50)
+                                    .background(
+                                        RoundedRectangle(
+                                            cornerRadius: 50,
+                                            style: .continuous
+                                        )
+                                        .stroke(Color("AccentColor"), lineWidth: 3)
                                     )
-                                    .stroke(Color("AccentColor"), lineWidth: 3)
-                                )
+                                
+                                Text("Apple")
+                                    .font(.caption)
+                            }
                         }
-                        Text("Apple")
-                            .font(.caption)
                     }
                     Spacer()
                     
                     VStack {
-                        Button(action: {}) {
-                            Text("F")
-                                .frame(width:20, height: 20)
-                                .padding()
-                                .foregroundColor(Color("AccentColor"))
-                                .background(.white)
-                                .cornerRadius(50)
-                                .background(
-                                    RoundedRectangle(
-                                        cornerRadius: 50,
-                                        style: .continuous
+                        Button(action: {
+                            AccessibilityNotification.Announcement("Connection Facebook")
+                                .post()
+                        }) {
+                            VStack {
+                                Text("F")
+                                    .frame(width:20, height: 20)
+                                    .padding()
+                                    .foregroundColor(Color("AccentColor"))
+                                    .background(.white)
+                                    .cornerRadius(50)
+                                    .background(
+                                        RoundedRectangle(
+                                            cornerRadius: 50,
+                                            style: .continuous
+                                        )
+                                        .stroke(Color("AccentColor"), lineWidth: 3)
                                     )
-                                    .stroke(Color("AccentColor"), lineWidth: 3)
-                                )
+                                
+                                Text("Facebook")
+                                    .font(.caption)
+                            }
                         }
-                        Text("Facebook")
-                            .font(.caption)
                     }
                     Spacer()
                     
@@ -136,7 +154,10 @@ struct logInView: View {
                 .padding(.leading, 60)
                 .padding(.bottom, 20)// extrac space to the top to sign in button
                 
-                Button(action: {}) {
+                Button(action: {
+                    AccessibilityNotification.Announcement("Se connecter")
+                        .post()
+                }) {
                     Text("Se connecter")
                     
                         .frame(width:260, height: 11)
@@ -145,7 +166,9 @@ struct logInView: View {
                         .background(Color("AccentColor"))
                         .cornerRadius(8)
                 }
-                Button(action: {nb += 1}) {
+                Button(action: {nb += 1
+                    AccessibilityNotification.Announcement("Continuer sans compte")
+                        .post()}) {
                     Text("Continuer sans compte")
                     
                         .frame(width:260, height: 11)
@@ -183,7 +206,10 @@ struct logInView: View {
                 
                 HStack {
                     // spacer to push text to the right
-                    Button(action:{}) {
+                    Button(action:{
+                        AccessibilityNotification.Announcement("Mot de passe oublié?")
+                            .post()
+                    }) {
                         Text("Mot de passe oublié?")
                             .fontWeight(.thin)
                             . font(. system(size: 15))
