@@ -236,10 +236,10 @@ struct searchMedView: View {
                 Text($0.name)
             }
             .navigationTitle("Médicaments")
-            .toolbar { EditButton() }
+            .environment(\.editMode, .constant(EditMode.active))
             
         }
-        .searchable(text: $searchText, prompt: "rechercher médicament")
+        .searchable(text: $searchText, prompt: "rechercher médicaments")
         Text("\(multiSelection.count) médicaments sélectionnés")
 //        Button de retour arriere
         Button() {
