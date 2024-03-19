@@ -54,7 +54,7 @@ struct TimePicker: UIViewRepresentable {
 
 // MARK: structure d'un médicament
 struct Medicament: Identifiable, Hashable {
-    var id = UUID().uuidString
+    var id = UUID()
     var name: String
     var detailMed: String
     var typeAdmin: TypeAdmin
@@ -67,6 +67,10 @@ struct Medicament: Identifiable, Hashable {
 // MARK: tableau de rappelMed vide
 class TabRappelMed: ObservableObject {
     @Published var rappelMed: [RappelMed] = []
+    
+    func addNewRappelMed(new: Medicament) {
+        self.rappelMed.append(RappelMed(med: new))
+    }
 }
 
 // MARK: tableau de medicament vide
@@ -119,14 +123,6 @@ class RappelMed: Identifiable, ObservableObject {
         self.med = med
         self.confirm = confirm
         self.dosage = dosage
-    }
-    
-    func incrementStep() {
-        self.dosage += 1
-    }
-    
-    func decrementStep() {
-        self.dosage -= 1
     }
 }
 

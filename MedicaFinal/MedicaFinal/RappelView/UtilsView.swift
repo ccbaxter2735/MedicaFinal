@@ -225,48 +225,52 @@ struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
     @ObservedObject var tabMed: TabRappelMed
     @State var searchText = ""
-    @State var multiSelection = Set<String>()
+    @State private var multiSelection = Set<UUID>()
+    @State private var copytab: [Medicament] = []
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         NavigationView {
-            List (listMed.med.enumerated().map { $0.element }, id: \.self) { item in
-                Toggle(isOn: Binding<Bool>(
-                    get: {
-                        self.multiSelection.contains(item)
-                    },
-                    set: { _ in
-                        if self.multiSelection.contains(item) {
-                            self.multiSelection.remove(item)
-                        } else {
-                            self.multiSelection.insert(item)
-                        }
-                    }
-                )) {
-                    Text(item)
-                }
-                .navigationBarTitle("Selection des médicaments")
+            List(tabA, selection: $multiSelection) {
+                Text($0.name)
+            }
+            .navigationTitle("Médicaments")
+            .toolbar { EditButton() }
+            
+        }
+        .searchable(text: $searchText, prompt: "rechercher médicament")
+        Text("\(multiSelection.count) médicaments sélectionnés")
+//        Button de retour arriere
+        Button() {
+//            copytab = Array(multiSelection)
+//            ForEach(copytab) { copy in
+//                tabMed.addNewRappelMed(new: copy)
+//            }
+            presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Ajouter médicaments")
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.accentColor).cornerRadius(10)
+            }
+        
+    }
+    var tabA: [Medicament] {
+        if searchText.isEmpty {
+            return listMed.med
+        } else {
+            return listMed.med.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText)
             }
         }
     }
 }
-                
-//            }
-//            .searchable(text: $searchText, prompt: "rechercher médicament")
-//        }
-//        var tabA: [Medicament] {
-//            if searchText.isEmpty {
-//                return listMed.med
-//            } else {
-//                return listMed.med.filter {
-//                    $0.name.localizedCaseInsensitiveContains(searchText)
-//                }
-//            }
-//        }
-//    }
     
-    //#Preview {
-    ////    RappTitleView(rapp: rappel[0])
-    ////    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
-    ////    CircleChoixJours(text: "Lun")
-    ////    CircledText(text: "lun", test: false)
-    ////    searchMedView(listMed: baseDonneesMed)
-    //}
+    #Preview {
+    //    RappTitleView(rapp: rappel[0])
+    //    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+    //    CircleChoixJours(text: "Lun")
+    //    CircledText(text: "lun", test: false)
+        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
+    }
