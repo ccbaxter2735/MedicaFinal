@@ -11,7 +11,7 @@ struct TabRappelMedView: View {
     @ObservedObject var med: RappelMed
     
     var body: some View {
-        HStack (alignment: .center){
+        HStack (alignment: .center, spacing: 40){
             Text(med.med.name)
                 .font(.headline)
                 .fontWeight(.bold)

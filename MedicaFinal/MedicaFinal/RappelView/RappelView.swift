@@ -33,8 +33,12 @@ struct RappelView: View {
                         VStack(content: {
                             ForEach(tabRappel.sortFilterTabRappel()) { tab in
                                 CheckRappelView(rapp: tab)
+                                    .padding(10)
                             }
-                            .padding(10)
+                            if (tabRappel.testCongrats() == false) {
+                                CongratsView()
+                                    .padding(10)
+                            }
                         })
                         
                     }

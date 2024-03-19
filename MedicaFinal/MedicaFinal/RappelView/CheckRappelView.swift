@@ -33,5 +33,6 @@ struct CheckRappelView: View {
 }
 
 #Preview {
-    CheckRappelView(rapp: rappelTest[0])
+//    CheckRappelView(rapp: rappelTest[0])
+    CongratsView()
 }

@@ -35,6 +35,7 @@
 		6F3D22932BA746A800ABE42B /* StructRappel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22922BA746A800ABE42B /* StructRappel.swift */; };
 		6F3D22952BA746B700ABE42B /* UtilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22942BA746B700ABE42B /* UtilsView.swift */; };
 		6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FEF8F2BA85108006F8A87 /* TabBar.swift */; };
+		6F93E2012BAA47D600848CF2 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F93E2002BAA47D600848CF2 /* CongratsView.swift */; };
 		6FA18ACD2BA890D8000F048E /* TabRappelMedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		6F3D22922BA746A800ABE42B /* StructRappel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRappel.swift; sourceTree = "<group>"; };
 		6F3D22942BA746B700ABE42B /* UtilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsView.swift; sourceTree = "<group>"; };
 		6F6FEF8F2BA85108006F8A87 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		6F93E2002BAA47D600848CF2 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
 		6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRappelMedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 				6F3D22922BA746A800ABE42B /* StructRappel.swift */,
 				6F3D22942BA746B700ABE42B /* UtilsView.swift */,
 				6FA18ACC2BA890D8000F048E /* TabRappelMedView.swift */,
+				6F93E2002BAA47D600848CF2 /* CongratsView.swift */,
 			);
 			path = RappelView;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				6F1DD1702BA51B73003B19F5 /* MedicaFinalApp.swift in Sources */,
 				6F3D22732BA7424900ABE42B /* CopyOrdoView.swift in Sources */,
 				6F3D22892BA7450600ABE42B /* DetailsView.swift in Sources */,
+				6F93E2012BAA47D600848CF2 /* CongratsView.swift in Sources */,
 				6F3D227D2BA743A900ABE42B /* SignInLogInView.swift in Sources */,
 				6F3D22812BA7441300ABE42B /* SignInView.swift in Sources */,
 				6F2337FF2BA7554F0058E6C3 /* CheckRappelView.swift in Sources */,

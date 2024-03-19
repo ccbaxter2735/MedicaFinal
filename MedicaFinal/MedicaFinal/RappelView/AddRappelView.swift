@@ -234,11 +234,11 @@ struct addRappelView: View {
                             .multilineTextAlignment(.leading)
                             .background(.gray.opacity(0.0))
                         VStack {
-                            ForEach(tabMed.rappelMed) { tab in
-                                TabRappelMedView(med: tab)
-                                Divider()
-                            }
-                            .padding(2)
+                                ForEach(tabMed.rappelMed) { tab in
+                                    TabRappelMedView(med: tab)
+                                    Divider()
+                                }
+                                .padding(5)
                         }
                     }
 

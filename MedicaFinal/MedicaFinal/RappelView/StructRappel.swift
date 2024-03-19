@@ -97,6 +97,16 @@ class TabRappel: ObservableObject {
         return self.rappel;
     }
     
+    // MARK: filtre les rappels qui sont auj et les ordonnent par heure
+    func testCongrats() -> Bool {
+        for tab in self.rappel {
+            if (tab.finish == false) {
+                return false
+            }
+        }
+        return true
+    }
+    
     // MARK: filtre les rappels en fonction de du jour de rappel et le jour d'auj
     func filterTabRappel() -> [Rappel] {
         self.rappel = self.rappel.filter {
@@ -225,7 +235,7 @@ var rappelTest: [Rappel] = [
         RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 4),
         RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2)
     ], color: .white, finish: false, typeRappel: TypeRappel.alarme),
-    Rappel(name: "Traitement anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
+    Rappel(name: "Anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
         RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2),
         RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 2)
     ], color: .white, finish: false, typeRappel: TypeRappel.alarme)
