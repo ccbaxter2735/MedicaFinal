@@ -124,20 +124,30 @@ struct RappTitleView: View {
                 VStack (alignment: .leading, content: {
                     Text("Penser à prendre à")
                         .font(.headline)
+                        .foregroundColor(rapp.colorT)
+//                        .fontWeight(.heavy)
                     Text(rapp.name)
                         .font(.subheadline)
+                        .foregroundColor(rapp.colorT)
+                        .fontWeight(.heavy)
                 })
                 Spacer()
                 HStack {
                     Image(systemName: "alarm")
                     VStack (alignment: .trailing){
-                        Text(rapp.hPrise)
-                            .foregroundColor(rapp.checkRetard())
-                            .background(.thinMaterial)
-                        if (rapp.checkRetard() == .red) {
-                            Text("Retard")
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.red)
+                        if (rapp.finish == true) {
+                            Text("Validé")
+                                .foregroundColor(.accentColor)
+                                .background(.thinMaterial)
+                        } else {
+                            Text(rapp.hPrise)
+                                .foregroundColor(rapp.checkRetard())
+                                .background(.thinMaterial)
+                            if (rapp.checkRetard() == .red) {
+                                Text("Retard")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.red)
+                            }
                         }
                     }
                 }
@@ -301,8 +311,8 @@ struct searchMedView: View {
 }
     
     #Preview {
-//        RappTitleView(rapp: rappelTest[0])
-        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+        RappTitleView(rapp: rappelTest[0])
+//        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
     //    CircleChoixJours(text: "Lun")
     //    CircledText(text: "lun", test: false)
 //        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())

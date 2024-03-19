@@ -26,7 +26,7 @@ struct CheckRappelView: View {
         }
         .padding(20)
         .frame(width: UIScreen.main.bounds.width - 10)
-        .background(.white)
+        .background(rapp.color)
         .cornerRadius(10)
         .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     }

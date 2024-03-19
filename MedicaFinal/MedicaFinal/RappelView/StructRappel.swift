@@ -107,7 +107,7 @@ class TabRappel: ObservableObject {
     
     // MARK: ajoute un Rappel dans le tableau de Rappel
     func addRappel(name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], typeRappel: TypeRappel) {
-        self.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, color: .black, finish: false, typeRappel: TypeRappel.alarme))
+        self.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, color: .white, finish: false, typeRappel: TypeRappel.alarme))
     }
 }
 
@@ -133,12 +133,13 @@ class Rappel: Identifiable, ObservableObject {
     @Published var weekday: [Int] // chaque jour de semaine est un int (1 = dimanche -> 7 = samedi)
     @Published var hPrise: String
     @Published var tabMed: [RappelMed]
-    @Published var color: UIColor?
+    @Published var color: Color?
+    @Published var colorT: Color?
     @Published var finish: Bool
     @Published var typeRappel: TypeRappel
     @Published var isToday: Bool?
     
-    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: UIColor = .black, finish: Bool = false, typeRappel: TypeRappel) {
+    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: Color = .white, colorT: Color = .black, finish: Bool = false, typeRappel: TypeRappel) {
         self.id = id
         self.name = name
         self.weekday = weekday
@@ -175,7 +176,13 @@ class Rappel: Identifiable, ObservableObject {
     
     // MARK: valid all the medicament of the rappel
     func validRappel() {
+        if (self.finish == false) {
+            self.color = .white
+            self.colorT = .black
+        }
         if (self.finish == true) {
+            self.color = .grayLight
+            self.colorT = .gray
             for it in self.tabMed {
                 it.confirm = true
             }
@@ -217,11 +224,11 @@ var rappelTest: [Rappel] = [
         RappelMed(med: baseDonneesMed[1], confirm: false, dosage: 1),
         RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 4),
         RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2)
-    ], color: .black, finish: false, typeRappel: TypeRappel.alarme),
+    ], color: .white, finish: false, typeRappel: TypeRappel.alarme),
     Rappel(name: "Traitement anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
         RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2),
         RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 2)
-    ], color: .black, finish: false, typeRappel: TypeRappel.alarme)
+    ], color: .white, finish: false, typeRappel: TypeRappel.alarme)
     
 ]
 
