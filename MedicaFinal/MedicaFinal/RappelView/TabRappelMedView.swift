@@ -11,13 +11,11 @@ struct TabRappelMedView: View {
     @ObservedObject var med: RappelMed
     
     var body: some View {
-        HStack {
+        HStack (alignment: .center, spacing: 30){
             Text(med.med.name)
-            Stepper(value: $med.dosage, in: 0...10) {
-                Text("dosage: \(med.dosage)")
-            }
+            Stepper("Dosage: \(med.dosage)", value: $med.dosage, in: 0...10)
         }
-        .padding()
+        .padding(2)
     }
 }
 

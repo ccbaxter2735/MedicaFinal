@@ -85,9 +85,9 @@ struct SelectionSem: View {
     
     var body: some View {
         HStack {
-            CircleChoixJours(tabInt: $weekday, text: "lun", i: 2, test: $state[1])
-            CircleChoixJours(tabInt: $weekday, text: "mar", i: 3, test: $state[2])
-            CircleChoixJours(tabInt: $weekday, text: "mer", i: 4, test: $state[3])
+            CircleChoixJours(tabInt: $weekday, text: "Lun", i: 2, test: $state[1])
+            CircleChoixJours(tabInt: $weekday, text: "Mar", i: 3, test: $state[2])
+            CircleChoixJours(tabInt: $weekday, text: "Mer", i: 4, test: $state[3])
             CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
             CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
         }
@@ -101,8 +101,8 @@ struct SelectionWE: View {
     
     var body: some View {
         HStack {
-            CircleChoixJours(tabInt: $weekday, text: "lun", i: 7, test: $state[6])
-            CircleChoixJours(tabInt: $weekday, text: "mar", i: 1, test: $state[0])
+            CircleChoixJours(tabInt: $weekday, text: "Sam", i: 7, test: $state[6])
+            CircleChoixJours(tabInt: $weekday, text: "Dim", i: 1, test: $state[0])
         }
     }
 }
@@ -167,7 +167,7 @@ struct MedView: View {
                 VStack (alignment: .leading, spacing: 2) {
                     if (tabM.confirm == true) {
                         Text(tabM.med.name)
-                            .font(.caption)
+                            .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
                             .strikethrough()
@@ -183,7 +183,7 @@ struct MedView: View {
                         }
                     } else {
                         Text(tabM.med.name)
-                            .font(.caption)
+                            .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                         HStack {
@@ -241,35 +241,27 @@ struct showTabMedView: View {
     }
 }
 
-struct ListMedView: View {
-    @ObservedObject var medicament: TabMedicament
-    @State var tabMed: [RappelMed]
-    var bool: [Bool] = Array(repeating: false, count: 4)
-    var body: some View {
-        //        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
-        //            HStack (alignment: .center, spacing: 10) {
-        //                Button (action: {
-        //                    bool[index] = !bool[index]
-        //                    tabMed.append(RappelMed(med: index, dosage: 1))
-        //                }, label: {
-        //                    CheckImageView(tabM: bool[index])
-        //                })
-        Text("index.name")
-        Spacer()
-        Text("index.detailMed")
-        //            }
-        //        }
-    }
-}
-
+// MARK: Modal de selection de medicament dans base de données
 struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
     @ObservedObject var tabMed: TabRappelMed
     @State var searchText = ""
     @State private var multiSelection = Set<UUID>()
+    @State var tabString: [Medicament] = []
     @State private var copytab: [Medicament] = []
     
     @Environment(\.presentationMode) var presentationMode
+    
+    // MARK: Méthode pour récupérer les noms des éléments sélectionnés
+    private func selectedMedNames(meds: [Medicament], multiSelection: Set<UUID>) -> [Medicament] {
+        var selectedNames: [Medicament] = []
+        for med in meds {
+            if multiSelection.contains(med.id) {
+                selectedNames.append(Medicament(name: med.name, detailMed: med.imgMed, typeAdmin: med.typeAdmin, imgTypeAdmin: med.imgTypeAdmin, imgMed: med.imgMed))
+            }
+        }
+        return selectedNames
+    }
     
     var body: some View {
         NavigationView {
@@ -284,10 +276,10 @@ struct searchMedView: View {
         Text("\(multiSelection.count) médicaments sélectionnés")
 //        Button de retour arriere
         Button() {
-//            copytab = Array(multiSelection)
-//            ForEach(copytab) { copy in
-//                tabMed.addNewRappelMed(new: copy)
-//            }
+            tabString = selectedMedNames(meds: listMed.med, multiSelection: multiSelection)
+            for medic in tabString {
+                tabMed.addNewRappelMed(new: medic)
+            }
             presentationMode.wrappedValue.dismiss()
             } label: {
                 Text("Ajouter médicaments")
@@ -309,8 +301,8 @@ struct searchMedView: View {
 }
     
     #Preview {
-        RappTitleView(rapp: rappelTest[0])
-//        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+//        RappTitleView(rapp: rappelTest[0])
+        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
     //    CircleChoixJours(text: "Lun")
     //    CircledText(text: "lun", test: false)
 //        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())

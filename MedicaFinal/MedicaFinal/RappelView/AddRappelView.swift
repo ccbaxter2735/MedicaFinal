@@ -32,11 +32,11 @@ struct addRappelView: View {
     
     // ------------- body addRappelView ----------------
     var body: some View {
-        VStack(alignment: .leading, spacing: 10, content: {
+        VStack(alignment: .center, spacing: 10, content: {
             // --- input rappel information ---
-            // nom du rappel
+            // nom du rappel ------------------
             inputFieldLogin(data: $name, title: "Intitulé du rappel")
-            // choix des jours
+            // choix des jours ----------------
             VStack (alignment: .leading) {
                 Text("Jours des rappels")
                     .font(.headline)
@@ -49,7 +49,7 @@ struct addRappelView: View {
                     SelectionWE(state: $state, weekday: $weekday)
                 }
             }
-            // choix de l'heure du rappel
+            // choix de l'heure du rappel -----
             HStack (alignment: .center) {
                 Text("Heure du rappel:")
                     .font(.headline)
@@ -60,7 +60,7 @@ struct addRappelView: View {
                 TimePicker(selectedTime: $selectedTime)
             }
             .padding()
-            // tableau de med
+            // tableau de med ------------------
             HStack {
                 Text("Médicaments du rappel:")
                     .font(.headline)
@@ -68,20 +68,28 @@ struct addRappelView: View {
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.leading)
                     .background(.gray.opacity(0.0))
+                Spacer()
                 NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
                     // MARK: vue d'ajout de rappel
-                    Text("Ajouter médicament")
+                    Text("Ajouter")
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.accentColor)
                         .cornerRadius(10)
                 }
-                ForEach(tabMed.rappelMed) { tab in
-                    TabRappelMedView(med: tab)
-                }
-                .padding()
+                
             }
-
+            .padding(15)
+            // scrol med selectionne -----------------
+            ScrollView {
+                VStack {
+                    ForEach(tabMed.rappelMed) { tab in
+                        TabRappelMedView(med: tab)
+                        Divider()
+                    }
+                    .padding(2)
+                }
+            }
             // choix type de rappel
 //            HStack (alignment: .center) {
 //                Text("Type de rappel:")
@@ -100,7 +108,7 @@ struct addRappelView: View {
             // Bouton ajouter append données de newRappel vers tabRappel
 //            Spacer()
             Button() {
-                newRappel.addRappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: selectedType)
+                newRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: TypeRappel.notification))
                 presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")
