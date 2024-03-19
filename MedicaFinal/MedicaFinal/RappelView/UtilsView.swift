@@ -31,7 +31,7 @@ struct CircledText: View {
     
     let text: String
     var test: Bool
-    var radius = ((UIScreen.main.bounds.width - 56) / 7)
+    var radius = ((UIScreen.main.bounds.width - 56) / 6)
     
     var body: some View {
         if (test == false) {
@@ -86,9 +86,13 @@ struct SelectionSem: View {
     var body: some View {
         HStack {
             CircleChoixJours(tabInt: $weekday, text: "Lun", i: 2, test: $state[1])
+            Spacer()
             CircleChoixJours(tabInt: $weekday, text: "Mar", i: 3, test: $state[2])
+            Spacer()
             CircleChoixJours(tabInt: $weekday, text: "Mer", i: 4, test: $state[3])
+            Spacer()
             CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
+            Spacer()
             CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
         }
     }

@@ -11,11 +11,22 @@ struct TabRappelMedView: View {
     @ObservedObject var med: RappelMed
     
     var body: some View {
-        HStack (alignment: .center, spacing: 30){
+        HStack (alignment: .center){
             Text(med.med.name)
-            Stepper("Dosage: \(med.dosage)", value: $med.dosage, in: 0...10)
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(Color.black)
+                .multilineTextAlignment(.leading)
+                .background(.gray.opacity(0.0))
+            Spacer()
+            Stepper("Quantité: \(med.dosage)", value: $med.dosage, in: 0...10)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(Color.black)
+                .multilineTextAlignment(.leading)
+                .background(.gray.opacity(0.0))
         }
-        .padding(2)
+
     }
 }
 

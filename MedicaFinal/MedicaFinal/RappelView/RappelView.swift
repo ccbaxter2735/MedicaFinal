@@ -30,11 +30,11 @@ struct RappelView: View {
                         .font(.headline)
                         .foregroundColor(Color.blue)
                     ScrollView {
-                        VStack(spacing: 0, content: {
+                        VStack(content: {
                             ForEach(tabRappel.sortFilterTabRappel()) { tab in
                                 CheckRappelView(rapp: tab)
                             }
-                            .padding()
+                            .padding(10)
                         })
                         
                     }
@@ -48,7 +48,7 @@ struct RappelView: View {
                             .background(Color.accentColor)
                             .cornerRadius(10)
                     }
-                    .padding(20)
+                    .padding([.leading, .bottom, .trailing], 30)
                 })
             .navigationTitle("Rappel")
             .background(.white)
