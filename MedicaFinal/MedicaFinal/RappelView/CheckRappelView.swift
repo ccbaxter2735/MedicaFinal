@@ -14,10 +14,10 @@ struct CheckRappelView: View {
     
     // ------------- body checkRappelView ----------------
     var body: some View {
-        VStack (alignment: .center, spacing: 20) {
+        VStack (alignment: .center, spacing: 10) {
             RappTitleView(rapp: rapp)
             if (rapp.finish == false) {
-                VStack (alignment: .leading, spacing: 5) {
+                VStack (spacing: 5) {
                     ForEach (rapp.tabMed) { tab in
                         MedView(rapp: rapp, tabM: tab)
                     }

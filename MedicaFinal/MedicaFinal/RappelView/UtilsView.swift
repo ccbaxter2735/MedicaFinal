@@ -78,6 +78,35 @@ struct CircleChoixJours: View {
     }
 }
 
+// MARK: affiche la selection jours de semaine
+struct SelectionSem: View {
+    @Binding var state: [Bool]
+    @Binding var weekday: [Int]
+    
+    var body: some View {
+        HStack {
+            CircleChoixJours(tabInt: $weekday, text: "lun", i: 2, test: $state[1])
+            CircleChoixJours(tabInt: $weekday, text: "mar", i: 3, test: $state[2])
+            CircleChoixJours(tabInt: $weekday, text: "mer", i: 4, test: $state[3])
+            CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
+            CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
+        }
+    }
+}
+
+// MARK: affiche la selection jours de weekend
+struct SelectionWE: View {
+    @Binding var state: [Bool]
+    @Binding var weekday: [Int]
+    
+    var body: some View {
+        HStack {
+            CircleChoixJours(tabInt: $weekday, text: "lun", i: 7, test: $state[6])
+            CircleChoixJours(tabInt: $weekday, text: "mar", i: 1, test: $state[0])
+        }
+    }
+}
+
 // MARK: affiche le titre des rappels avant la liste de medicament
 struct RappTitleView: View {
     
@@ -119,7 +148,9 @@ struct MedView: View {
     @ObservedObject var tabM: RappelMed
     
     var body: some View {
-        HStack (alignment: .top, spacing: 30, content: {
+        Divider()
+            .padding(5)
+        HStack (alignment: .center, spacing: 30, content: {
             Button(action: {
                 tabM.confirm = !tabM.confirm
                 rapp.checkMedicament()
@@ -269,8 +300,8 @@ struct searchMedView: View {
     
     #Preview {
     //    RappTitleView(rapp: rappel[0])
-    //    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
     //    CircleChoixJours(text: "Lun")
     //    CircledText(text: "lun", test: false)
-        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
+//        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
     }

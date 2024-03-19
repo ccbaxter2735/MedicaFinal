@@ -32,7 +32,7 @@ struct addRappelView: View {
     
     // ------------- body addRappelView ----------------
     var body: some View {
-        VStack(alignment: .leading, content: {
+        VStack(alignment: .leading, spacing: 10, content: {
             // --- input rappel information ---
             // nom du rappel
             inputFieldLogin(data: $name, title: "Intitulé du rappel")
@@ -45,17 +45,8 @@ struct addRappelView: View {
                     .multilineTextAlignment(.leading)
                     .background(.gray.opacity(0.0))
                 VStack (alignment: .leading) {
-                    HStack {
-                        CircleChoixJours(tabInt: $weekday, text: "lun", i: 2, test: $state[1])
-                        CircleChoixJours(tabInt: $weekday, text: "mar", i: 3, test: $state[2])
-                        CircleChoixJours(tabInt: $weekday, text: "mer", i: 4, test: $state[3])
-                        CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
-                        CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
-                    }
-                    HStack {
-                        CircleChoixJours(tabInt: $weekday, text: "Sam", i: 7, test: $state[6])
-                        CircleChoixJours(tabInt: $weekday, text: "Dim", i: 1, test: $state[0])
-                    }
+                    SelectionSem(state: $state, weekday: $weekday)
+                    SelectionWE(state: $state, weekday: $weekday)
                 }
             }
             // choix de l'heure du rappel
@@ -107,7 +98,7 @@ struct addRappelView: View {
 //            }
             
             // Bouton ajouter append données de newRappel vers tabRappel
-            Spacer()
+//            Spacer()
             Button() {
                 newRappel.addRappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: selectedType)
                 presentationMode.wrappedValue.dismiss()
@@ -118,7 +109,7 @@ struct addRappelView: View {
                     .background(Color.accentColor).cornerRadius(10)
                 }
         })
-        .padding()
+        .padding(10)
     }
 }
 
