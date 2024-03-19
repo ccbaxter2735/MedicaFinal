@@ -38,6 +38,14 @@ struct TabBar: View {
                         icon: { Image(systemName: "info")}
                     )
                 }
+            ProfilView()
+                .tabItem {
+                    Label(
+                        title: { Text("Profil") },
+                        icon: { Image(systemName: "person.crop.circle.fill")}
+                    )
+                }
+
         }
     }
 }
