@@ -113,31 +113,37 @@ struct RappTitleView: View {
     @ObservedObject var rapp: Rappel
     
     var body: some View {
-        HStack (alignment: .top, spacing: 30, content: {
-            Button(action: {
-                rapp.finish = !rapp.finish
-                rapp.validRappel()
-            }, label: {
-                CheckImageView(tabM: rapp.finish)
-            })
-            VStack (alignment: .leading, content: {
-                Text("Penser à prendre à")
-                    .font(.headline)
-                Text(rapp.name)
-                    .font(.subheadline)
-            })
-            Image(systemName: "alarm")
-            VStack (alignment: .trailing){
-                Text(rapp.hPrise)
-                    .foregroundColor(rapp.checkRetard())
-                    .background(.thinMaterial)
-                if (rapp.checkRetard() == .red) {
-                    Text("Retard")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.red)
+        VStack {
+            HStack (alignment: .top, spacing: 20, content: {
+                Button(action: {
+                    rapp.finish = !rapp.finish
+                    rapp.validRappel()
+                }, label: {
+                    CheckImageView(tabM: rapp.finish)
+                })
+                VStack (alignment: .leading, content: {
+                    Text("Penser à prendre à")
+                        .font(.headline)
+                    Text(rapp.name)
+                        .font(.subheadline)
+                })
+                Spacer()
+                HStack {
+                    Image(systemName: "alarm")
+                    VStack (alignment: .trailing){
+                        Text(rapp.hPrise)
+                            .foregroundColor(rapp.checkRetard())
+                            .background(.thinMaterial)
+                        if (rapp.checkRetard() == .red) {
+                            Text("Retard")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.red)
+                        }
+                    }
                 }
-            }
-        })
+            })
+        }
+        .frame(width: UIScreen.main.bounds.width - 40)
     }
 }
 
@@ -148,58 +154,62 @@ struct MedView: View {
     @ObservedObject var tabM: RappelMed
     
     var body: some View {
-        Divider()
-            .padding(5)
-        HStack (alignment: .center, spacing: 30, content: {
-            Button(action: {
-                tabM.confirm = !tabM.confirm
-                rapp.checkMedicament()
-            }, label: {
-                CheckImageView(tabM: tabM.confirm)
-            })
-            VStack (alignment: .leading) {
-                if (tabM.confirm == true) {
-                    Text(tabM.med.name)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .strikethrough()
-                    HStack {
-                        Text(String(tabM.dosage))
+        VStack {
+            Divider()
+                .padding(5)
+            HStack (alignment: .center, spacing: 30, content: {
+                Button(action: {
+                    tabM.confirm = !tabM.confirm
+                    rapp.checkMedicament()
+                }, label: {
+                    CheckImageView(tabM: tabM.confirm)
+                })
+                VStack (alignment: .leading, spacing: 2) {
+                    if (tabM.confirm == true) {
+                        Text(tabM.med.name)
                             .font(.caption)
+                            .fontWeight(.bold)
                             .foregroundColor(.gray)
                             .strikethrough()
-                        Text(tabM.med.typeAdmin.rawValue)
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .strikethrough()
-                    }
-                } else {
-                    Text(tabM.med.name)
-                        .font(.caption)
-                        .foregroundColor(.black)
-                    HStack {
-                        Text(String(tabM.dosage))
-                            .font(.caption)
-                        Text(tabM.med.typeAdmin.rawValue)
-                            .font(.caption)
-                        ForEach(0..<2) { _ in
-                            Image(systemName: "pill") // Image à répéter
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                            
-                                .frame(width: 10) // Taille de l'image
+                        HStack {
+                            Text(String(tabM.dosage))
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .strikethrough()
+                            Text(tabM.med.typeAdmin.rawValue)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .strikethrough()
                         }
-                        .font(.caption)
+                    } else {
+                        Text(tabM.med.name)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        HStack {
+                            Text(String(tabM.dosage))
+                                .font(.caption)
+                            Text(tabM.med.typeAdmin.rawValue)
+                                .font(.caption)
+                            ForEach(0..<tabM.dosage) { index in
+                                Image(systemName: "pill") // Image à répéter
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                
+                                    .frame(width: 10) // Taille de l'image
+                            }
+                            .font(.caption)
+                        }
                     }
                 }
-            }
-            Spacer()
-            Image(tabM.med.imgMed)
-                .resizable()
-                .frame(width: 50, height: 40)
-            
-        })
-        .frame(minWidth: 0, maxWidth: 300, alignment: .leading)
+                Spacer()
+                Image(tabM.med.imgMed)
+                    .resizable()
+                    .frame(width: 50, height: 40)
+                
+            })
+        }
+        .frame(width: UIScreen.main.bounds.width - 50)
     }
 }
 
@@ -299,8 +309,8 @@ struct searchMedView: View {
 }
     
     #Preview {
-    //    RappTitleView(rapp: rappel[0])
-        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+        RappTitleView(rapp: rappelTest[0])
+//        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
     //    CircleChoixJours(text: "Lun")
     //    CircledText(text: "lun", test: false)
 //        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())

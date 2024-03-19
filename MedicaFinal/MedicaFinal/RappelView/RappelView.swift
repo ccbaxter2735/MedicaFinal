@@ -30,10 +30,13 @@ struct RappelView: View {
                         .font(.headline)
                         .foregroundColor(Color.blue)
                     ScrollView {
-                        ForEach(tabRappel.sortFilterTabRappel()) { tab in
-                            CheckRappelView(rapp: tab)
-                        }
-                        .padding()
+                        VStack(spacing: 0, content: {
+                            ForEach(tabRappel.sortFilterTabRappel()) { tab in
+                                CheckRappelView(rapp: tab)
+                            }
+                            .padding()
+                        })
+                        
                     }
                     .background(.thinMaterial)
                     Spacer()

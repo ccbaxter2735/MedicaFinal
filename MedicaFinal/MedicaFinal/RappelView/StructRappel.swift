@@ -213,16 +213,14 @@ var medicament: [Medicament] = [
 // MARK: Example tab de rappel
 var rappelTest: [Rappel] = [
     Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2)
+        RappelMed(med: baseDonneesMed[0], confirm: false, dosage: 2),
+        RappelMed(med: baseDonneesMed[1], confirm: false, dosage: 1),
+        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 4),
+        RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2)
     ], color: .black, finish: false, typeRappel: TypeRappel.alarme),
-    Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2)
+    Rappel(name: "Traitement anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
+        RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2),
+        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 2)
     ], color: .black, finish: false, typeRappel: TypeRappel.alarme)
     
 ]
