@@ -12,6 +12,7 @@ struct Ordonnance : Identifiable {
     var dateEmission : String
     var imgOrdonnance : String
     var renouvellement : Int
+    var index : Int
     
     
 }

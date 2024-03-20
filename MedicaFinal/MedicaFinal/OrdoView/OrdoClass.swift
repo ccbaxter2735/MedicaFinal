@@ -9,18 +9,42 @@ import Foundation
 
 
 
-class OrdonnanceModel : ObservableObject {
+class OrdonnanceModel : ObservableObject  {
     
     
-    @Published var ordonnances : [Ordonnance] = []
+    @Published var ordonnances : [Ordonnance] = ordoExemple
     
    
     
-    func addOrdonnance(dateEmisssion : Date, imgOrdonnance : String, renouvellement : Int) {
-           self.ordonnances.append(Ordonnance(dateEmission: Date().formatted(date: .numeric, time: .omitted), imgOrdonnance: "ordo1", renouvellement: 1))
-       }
+    
     
     func DeleteOrdonnance(dateEmisssion : Date, imgOrdonnance : String, renouvellement : Int) {
-        self.ordonnances.remove(at:  1)
+        self.ordonnances.remove(at:  0)
        }
+    
+    func filterOrdoValides() -> [Ordonnance] {
+        self.ordonnances = self.ordonnances.filter {
+             $0.renouvellement < 3
+        
+        }
+        return self.ordonnances
+    }
+    
+    func filterOrdoNonValides() -> [Ordonnance] {
+        self.ordonnances = self.ordonnances.filter{
+            $0.renouvellement >= 3
+        }
+        return self.ordonnances
+    }
+    
 }
+
+
+var ordoExemple : [Ordonnance] = [
+
+Ordonnance(dateEmission: "22-03-24", imgOrdonnance: "ordonnance", renouvellement: 1, index: 0),
+Ordonnance(dateEmission: "10-10-23", imgOrdonnance: "ordonnance", renouvellement: 2, index: 1),
+Ordonnance(dateEmission: "13-02-24", imgOrdonnance: "ordonnance", renouvellement: 3,  index: 2)
+
+
+]
