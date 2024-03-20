@@ -35,6 +35,8 @@
 		6F3D22932BA746A800ABE42B /* StructRappel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22922BA746A800ABE42B /* StructRappel.swift */; };
 		6F3D22952BA746B700ABE42B /* UtilsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3D22942BA746B700ABE42B /* UtilsView.swift */; };
 		6F6FEF902BA85108006F8A87 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FEF8F2BA85108006F8A87 /* TabBar.swift */; };
+		6F913C482BAB1BD800A1317E /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F913C472BAB1BD800A1317E /* CongratsView.swift */; };
+		6F913C4A2BAB1C3A00A1317E /* TabRappelMedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F913C492BAB1C3A00A1317E /* TabRappelMedView.swift */; };
 		A328D00D2BA9CCF200381CAE /* CalendarInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A328D00C2BA9CCF200381CAE /* CalendarInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		6F3D22922BA746A800ABE42B /* StructRappel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRappel.swift; sourceTree = "<group>"; };
 		6F3D22942BA746B700ABE42B /* UtilsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsView.swift; sourceTree = "<group>"; };
 		6F6FEF8F2BA85108006F8A87 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		6F913C472BAB1BD800A1317E /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		6F913C492BAB1C3A00A1317E /* TabRappelMedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRappelMedView.swift; sourceTree = "<group>"; };
 		A328D00C2BA9CCF200381CAE /* CalendarInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,10 +193,12 @@
 			children = (
 				6F3D228E2BA7468B00ABE42B /* RappelTestView.swift */,
 				6F3D22902BA7469800ABE42B /* RappelView.swift */,
+				6F913C472BAB1BD800A1317E /* CongratsView.swift */,
 				6F2338002BA783AF0058E6C3 /* AddRappelView.swift */,
 				6F2337FE2BA7554F0058E6C3 /* CheckRappelView.swift */,
 				6F3D22922BA746A800ABE42B /* StructRappel.swift */,
 				6F3D22942BA746B700ABE42B /* UtilsView.swift */,
+				6F913C492BAB1C3A00A1317E /* TabRappelMedView.swift */,
 			);
 			path = RappelView;
 			sourceTree = "<group>";
@@ -301,10 +307,12 @@
 				6F3D22872BA744F300ABE42B /* InfoMedView.swift in Sources */,
 				6F1DD1722BA51B73003B19F5 /* ContentView.swift in Sources */,
 				6F3D22952BA746B700ABE42B /* UtilsView.swift in Sources */,
+				6F913C4A2BAB1C3A00A1317E /* TabRappelMedView.swift in Sources */,
 				6F3D22832BA7447700ABE42B /* inputFieldLogin.swift in Sources */,
 				6F1DD1702BA51B73003B19F5 /* MedicaFinalApp.swift in Sources */,
 				6F3D22732BA7424900ABE42B /* CopyOrdoView.swift in Sources */,
 				6F3D22892BA7450600ABE42B /* DetailsView.swift in Sources */,
+				6F913C482BAB1BD800A1317E /* CongratsView.swift in Sources */,
 				6F3D227D2BA743A900ABE42B /* SignInLogInView.swift in Sources */,
 				6F3D22812BA7441300ABE42B /* SignInView.swift in Sources */,
 				6F2337FF2BA7554F0058E6C3 /* CheckRappelView.swift in Sources */,
@@ -446,6 +454,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedicaFinal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -474,6 +483,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MedicaFinal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

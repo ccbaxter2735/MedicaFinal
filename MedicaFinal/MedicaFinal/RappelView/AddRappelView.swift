@@ -16,9 +16,10 @@ struct addRappelView: View {
     @State var state: [Bool] = Array(repeating: false, count: 7)
     @State var weekday: [Int] = []
     @State var hPrise: String = ""
-    @State var tabMed: [RappelMed] = []
-    @State var typeRappel: TypeRappel = TypeRappel.alarme
     
+    @State var tabMed: TabRappelMed = TabRappelMed()
+    
+    @State var selectedType: TypeRappel = TypeRappel.alarme
     @State var selectedTime = Date()
     
     func transformDateToHourMin(date: Date) -> String {
@@ -31,67 +32,123 @@ struct addRappelView: View {
     
     // ------------- body addRappelView ----------------
     var body: some View {
-        VStack(content: {
-            // --- input rappel information ---
-            // nom du rappel
-            inputFieldLogin(data: $name, title: "Intitulé du rappel")
-            // choix des jours
-            VStack (alignment: .leading) {
-                Text("Jours des rappels")
-                    .font(.headline)
-                    .fontWeight(.thin)
-                    .foregroundColor(Color.black)
-                    .multilineTextAlignment(.leading)
-                    .background(.gray.opacity(0.0))
-                VStack (alignment: .leading) {
-                    HStack {
-                        CircleChoixJours(tabInt: $weekday, text: "lun", i: 2, test: $state[1])
-                        CircleChoixJours(tabInt: $weekday, text: "mar", i: 3, test: $state[2])
-                        CircleChoixJours(tabInt: $weekday, text: "mer", i: 4, test: $state[3])
-                        CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
-                        CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
+        NavigationStack {
+            ScrollView {
+                VStack (alignment: .leading, spacing: 15, content: {
+                    VStack(alignment: .leading, content: {
+                        Text("Titre du rappel:")
+                            .font(.headline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .background(.gray.opacity(0.0))
+                        Text("(donner un nom à votre rappel exemple: epilepsie)")
+                            .font(.subheadline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .background(.gray.opacity(0.0))
+                        TextField("", text: $name)
+                            .padding(.horizontal, 10)
+                            .frame(height: 40)
+                            .overlay(
+                                RoundedRectangle(cornerSize: CGSize(width: 4, height: 4))
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                    })
+                    Divider()
+                    VStack(alignment: .leading, content: {
+                        Text("Jour(s) du rappel:")
+                            .font(.headline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .background(.gray.opacity(0.0))
+                        Text("(cochez le ou les jours auquels vous souhaitez être rappelé)")
+                            .font(.subheadline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                            .background(.gray.opacity(0.0))
+                        SelectionSem(state: $state, weekday: $weekday)
+                        SelectionWE(state: $state, weekday: $weekday)
+                    })
+                    Divider()
+                    HStack (alignment: .center) {
+                        VStack (alignment: .leading){
+                            Text("Heure du rappel:")
+                                .font(.headline)
+                                .fontWeight(.thin)
+                                .foregroundColor(Color.black)
+                                .background(.gray.opacity(0.0))
+                            Text("(indiquez l'heure souhaité)")
+                                .font(.subheadline)
+                                .fontWeight(.thin)
+                                .foregroundColor(Color.black)
+                                .multilineTextAlignment(.leading)
+                                .background(.gray.opacity(0.0))
+                        }
+                        TimePicker(selectedTime: $selectedTime)
+                            .frame(height: 35)
                     }
+                    Divider()
                     HStack {
-                        CircleChoixJours(tabInt: $weekday, text: "Sam", i: 7, test: $state[6])
-                        CircleChoixJours(tabInt: $weekday, text: "Dim", i: 1, test: $state[0])
+                        Text("Médicaments du rappel:")
+                            .font(.headline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .background(.gray.opacity(0.0))
+                        Spacer()
+                        NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
+                            // MARK: vue d'ajout de rappel
+                            Text("Ajouter médicament")
+                                .padding(10)
+                                .foregroundColor(.white)
+                                .background(Color.accentColor)
+                                .cornerRadius(10)
+                        }
                     }
-                }
+
+                    Divider()
+                    VStack (alignment: .leading) {
+                        Text("Liste des médicaments sélectionnés:")
+                            .font(.headline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .background(.gray.opacity(0.0))
+                        Text("(Veuillez ajouter vos dosages)")
+                            .font(.subheadline)
+                            .fontWeight(.thin)
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                            .background(.gray.opacity(0.0))
+                        VStack {
+                                ForEach(tabMed.rappelMed) { tab in
+                                    TabRappelMedView(med: tab)
+                                    Divider()
+                                }
+                                .padding(5)
+                        }
+                    }
+
+                    Spacer()
+                })
+                .padding(.all, 15.0)
             }
-            // choix de l'heure du rappel
-            HStack (alignment: .center) {
-                Text("Heure du rappel:")
-                    .font(.headline)
-                    .fontWeight(.thin)
-                    .foregroundColor(Color.black)
-                    .multilineTextAlignment(.leading)
-                    .background(.gray.opacity(0.0))
-                TimePicker(selectedTime: $selectedTime)
-            }
-            .padding()
-            // tableau de med
-            NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
-                // MARK: vue d'ajout de rappel
-                Text("+ Ajouter médicament")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.accentColor)
-                    .cornerRadius(10)
-            }
-            
-            
-            // Bouton ajouter append données de newRappel vers tabRappel
-            Spacer()
-            Button() {
-                newRappel.addRappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, typeRappel: typeRappel)
-                presentationMode.wrappedValue.dismiss()
+            VStack(alignment: .center, content: {
+                Button() {
+                    newRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: TypeRappel.notification))
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.accentColor).cornerRadius(10)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.accentColor).cornerRadius(10)
                 }
-        })
+            })
+            .padding([.leading, .bottom, .trailing], 20.0)
+            .navigationTitle("Créer nouveau rappel")
+        }
+        
     }
+
 }
 
 #Preview {

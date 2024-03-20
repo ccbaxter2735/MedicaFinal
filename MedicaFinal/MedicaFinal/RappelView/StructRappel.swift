@@ -54,7 +54,7 @@ struct TimePicker: UIViewRepresentable {
 
 // MARK: structure d'un médicament
 struct Medicament: Identifiable, Hashable {
-    var id = UUID().uuidString
+    var id = UUID()
     var name: String
     var detailMed: String
     var typeAdmin: TypeAdmin
@@ -64,6 +64,15 @@ struct Medicament: Identifiable, Hashable {
 }
 
 // ------------------------------ CLASSE DE DONNEES --------------------------------------
+// MARK: tableau de rappelMed vide
+class TabRappelMed: ObservableObject {
+    @Published var rappelMed: [RappelMed] = []
+    
+    func addNewRappelMed(new: Medicament) {
+        self.rappelMed.append(RappelMed(med: new))
+    }
+}
+
 // MARK: tableau de medicament vide
 class TabMedicament: ObservableObject {
     @Published var med: [Medicament] = baseDonneesMed
@@ -76,6 +85,7 @@ class TabMedicament: ObservableObject {
 // MARK: tableau de rappel vide
 class TabRappel: ObservableObject {
     @Published var rappel: [Rappel] = rappelTest
+    @Published var endDay: Bool = false
     
     // MARK: filtre les rappels qui sont auj et les ordonnent par heure
     func sortFilterTabRappel() -> [Rappel] {
@@ -88,6 +98,27 @@ class TabRappel: ObservableObject {
         return self.rappel;
     }
     
+    // MARK: check if the whole medicament have been taken
+    func checkRappelOK() {
+        for it in self.rappel {
+            if (it.finish == false) {
+                return
+            }
+        }
+        self.endDay = true
+    }
+
+    
+    // MARK: filtre les rappels qui sont auj et les ordonnent par heure
+    func testCongrats() -> Bool {
+        for tab in self.rappel {
+            if (tab.finish == false) {
+                return false
+            }
+        }
+        return true
+    }
+    
     // MARK: filtre les rappels en fonction de du jour de rappel et le jour d'auj
     func filterTabRappel() -> [Rappel] {
         self.rappel = self.rappel.filter {
@@ -98,7 +129,7 @@ class TabRappel: ObservableObject {
     
     // MARK: ajoute un Rappel dans le tableau de Rappel
     func addRappel(name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], typeRappel: TypeRappel) {
-        self.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, color: .black, finish: false, typeRappel: TypeRappel.alarme))
+        self.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed, color: .white, finish: false, typeRappel: TypeRappel.alarme))
     }
 }
 
@@ -109,7 +140,7 @@ class RappelMed: Identifiable, ObservableObject {
     @Published var confirm: Bool
     @Published var dosage: Int
     
-    init(id: UUID = UUID(), med: Medicament, confirm: Bool = false, dosage: Int) {
+    init(id: UUID = UUID(), med: Medicament, confirm: Bool = false, dosage: Int = 0) {
         self.id = id
         self.med = med
         self.confirm = confirm
@@ -124,12 +155,13 @@ class Rappel: Identifiable, ObservableObject {
     @Published var weekday: [Int] // chaque jour de semaine est un int (1 = dimanche -> 7 = samedi)
     @Published var hPrise: String
     @Published var tabMed: [RappelMed]
-    @Published var color: UIColor?
+    @Published var color: Color?
+    @Published var colorT: Color?
     @Published var finish: Bool
     @Published var typeRappel: TypeRappel
     @Published var isToday: Bool?
     
-    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: UIColor = .black, finish: Bool = false, typeRappel: TypeRappel) {
+    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: Color = .white, colorT: Color = .black, finish: Bool = false, typeRappel: TypeRappel) {
         self.id = id
         self.name = name
         self.weekday = weekday
@@ -166,7 +198,13 @@ class Rappel: Identifiable, ObservableObject {
     
     // MARK: valid all the medicament of the rappel
     func validRappel() {
+        if (self.finish == false) {
+            self.color = .white
+            self.colorT = .black
+        }
         if (self.finish == true) {
+            self.color = .grayLight
+            self.colorT = .gray
             for it in self.tabMed {
                 it.confirm = true
             }
@@ -204,24 +242,22 @@ var medicament: [Medicament] = [
 // MARK: Example tab de rappel
 var rappelTest: [Rappel] = [
     Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2)
-    ], color: .black, finish: false, typeRappel: TypeRappel.alarme),
-    Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2),
-        RappelMed(med: medicament[0], confirm: false, dosage: 2)
-    ], color: .black, finish: false, typeRappel: TypeRappel.alarme)
+        RappelMed(med: baseDonneesMed[0], confirm: false, dosage: 2),
+        RappelMed(med: baseDonneesMed[1], confirm: false, dosage: 1),
+        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 4),
+        RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2)
+    ], color: .white, finish: false, typeRappel: TypeRappel.alarme),
+    Rappel(name: "Anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
+        RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2),
+        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 2)
+    ], color: .white, finish: false, typeRappel: TypeRappel.alarme)
     
 ]
 
 var baseDonneesMed: [Medicament] = [
-    Medicament(name: "Doliprane", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Dafalgan", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Spasfon", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg")
+    Medicament(name: "Doliprane 500mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.pastille, imgTypeAdmin: "pastille(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Dafalgan 1000mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Spasfon lyoc", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.pulverisation, imgTypeAdmin: "pulvérisation(s)", imgMed: "Doliprane_500mg")
 ]
 // dosage par demi !!! pb dosage + image a revoir

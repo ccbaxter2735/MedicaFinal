@@ -7,31 +7,53 @@
 
 import SwiftUI
 
-struct DetailsView: View {
-//    class Medicament{
-//        var titre: String
-//        var frequence: String
-//        var info: String
-//        var danger: String
-//
-//        init(titre: String, frequence: String, info: String, danger: String){
-//            self.titre = titre
-//            self.frequence = frequence
-//            self.info = info
-//            self.danger = danger
-//        }
-//        func describe() -> String{
-//            return
-//        }
-//    }
-    var nom : String
+struct DetailMedView: View {
+    var med: Medicament
     var body: some View {
-        
-        Text("Détails de \(nom)")
-            .navigationBarTitle(nom)
+        ScrollView {
+            VStack {
+                Image(med.imgMed)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: UIScreen.main.bounds.width - 10)
+                Text(med.name)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .fontWeight(.thin)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .background(.gray.opacity(0.0))
+                Text(med.detailMed)
+                    .font(.title3)
+                    .fontWeight(.thin)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .background(.gray.opacity(0.0))
+                HStack (alignment: .center){
+                    Text("Type d'administration du médicament :")
+                        .font(.body)
+                        .fontWeight(.thin)
+                        .foregroundColor(Color.black)
+                        .multilineTextAlignment(.leading)
+                        .background(.gray.opacity(0.0))
+                    Spacer()
+                    Text(med.typeAdmin.rawValue)
+                        .font(.body)
+                        .fontWeight(.thin)
+                        .foregroundColor(Color.black)
+                        .multilineTextAlignment(.leading)
+                        .background(.gray.opacity(0.0))
+                    Image(med.typeAdmin.rawValue)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25)
+                }
+                .padding(10)
+            }
+        }
+
     }
 }
 
-#Preview {
-    DetailsView(nom: "Doliprane")
-}
+//#Preview {
+//    DetailMedView()
+//}

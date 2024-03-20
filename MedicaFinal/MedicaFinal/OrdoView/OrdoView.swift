@@ -61,11 +61,7 @@ struct OrdoView: View {
                         .background(RoundedRectangle(cornerRadius: 10))
                         .foregroundStyle(.mint)
                         
-                        Button(action: {
-                            ordoModel.addOrdonnance(dateEmisssion: .now, imgOrdonnance: "tori", renouvellement: 1)
-                        }, label: {
-                            Text("Ajouter un ordo manuellement")
-                        })
+                        
                         
                         
                     }

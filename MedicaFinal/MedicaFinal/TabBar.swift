@@ -34,8 +34,8 @@ struct TabBar: View {
             InfoMedView()
                 .tabItem {
                     Label(
-                        title: { Text("info") },
-                        icon: { Image(systemName: "info")}
+                        title: { Text("Medicament") },
+                        icon: { Image(systemName: "magnifyingglass")}
                     )
                 }
             ProfilView()
