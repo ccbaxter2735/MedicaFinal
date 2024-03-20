@@ -82,7 +82,7 @@ struct CalView: View {
                 
                 
             }
-            .navigationTitle("Calendar")
+            .navigationTitle("Calendrier")
 //            .background(.white)
         }
         
