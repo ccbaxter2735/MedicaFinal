@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PickerRenouvellement: View {
-    @State var nombreDerenouvellement: Int = 0
+    @Binding var nombreDerenouvellement : Int
     
     var body: some View {
         
@@ -26,19 +26,20 @@ struct PickerRenouvellement: View {
 }
 
 struct CopyOrdoView: View {
+    @State var nombreDerenouvellement: [Int] = Array(repeating: 0, count: 3)
+    
+    
+    
+    
+    var i: Int = 0
     @State var ordoModel = OrdonnanceModel()
     var body: some View {
         NavigationStack{
-            NavigationView{
-                List{
-                    ForEach(ordoModel.filterOrdoValides()){ ordonnance in
-                        NavigationLink(destination: Image("ordonnance")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 800)
-                                       
-                        )
-                        {
+            List {
+                Section {
+                    ForEach(ordoModel.filterOrdoValides()){
+                        ordonnance in
+                        HStack{
                             VStack(alignment: .leading){
                                 
                                 Text("Ordonnance du \(ordonnance.dateEmission)")
@@ -50,22 +51,57 @@ struct CopyOrdoView: View {
                             
                             
                             VStack(alignment: .leading){
-                                PickerRenouvellement()
+                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
+                                
+                                
                                     .font(.caption)
                                 
                             }
                             .padding(.leading)
-                            
-                            
                         }
-                        .padding(.vertical)
-                        .navigationTitle("Ordonnances en cours")
                         
-                    } // ForEach
-                } // List
+                        
+                        
+                        
+                    }
+                    .padding(.vertical)
+                    .navigationTitle("Ordonnances en cours")
+                    .pickerStyle(.menu)
+                    
+                } header: {
+                    Text("Ordonnances valides")
+                }
+                
+                Section {
+                    ForEach(ordoModel.filterOrdoNonValides()){ ordonnance in
+                        HStack{
+                            VStack(alignment: .leading){
+                                
+                                Text("Ordonnance du \(ordonnance.dateEmission)")
+                                    .font(.caption)
+                                
+                                
+                            }
+                            .padding(.trailing)
+                            
+                            
+                            VStack(alignment: .leading){
+                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
+                                
+                                
+                                    .font(.caption)
+                                
+                            }
+                            .padding(.leading)
+                        }
+                        
+                    }
+                } header: {
+                    
+                    Text("Ordonnances non valides")
+                }
             }
-            .navigationTitle("Liste des ordonances")
-            
+            .foregroundStyle(.black)
             NavigationLink{
                 
                 OCRView()
@@ -77,25 +113,11 @@ struct CopyOrdoView: View {
             .foregroundStyle(.white)
             .background(RoundedRectangle(cornerRadius: 10))
             .foregroundColor(.accentColor)
-            
-          /*  Button(action: {
-                ordoModel.addOrdonnance(dateEmisssion: .now, imgOrdonnance: "tori", renouvellement: 1)
-            }, label: {
-                Text("Ajouter un ordo manuellement")
-            })
-       Button(action: {
-                ordoModel.DeleteOrdonnance(dateEmisssion: .now, imgOrdonnance: "tori", renouvellement: 0)
-            }, label: {
-                Text("Supprimer un ordo manuellement")
-            }) */
-            
-        } // Nav stack
-        .foregroundStyle(.black)
-        
+        }
     }
-    
 }
 
 #Preview {
     CopyOrdoView()
 }
+

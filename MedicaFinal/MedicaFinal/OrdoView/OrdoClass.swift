@@ -16,22 +16,21 @@ class OrdonnanceModel : ObservableObject  {
     
    
     
-    func addOrdonnance(dateEmisssion : Date, imgOrdonnance : String, renouvellement : Int) {
-           self.ordonnances.append(Ordonnance(dateEmission: Date().formatted(date: .numeric, time: .omitted), imgOrdonnance: "ordo1", renouvellement: 1))
-       }
+    
     
     func DeleteOrdonnance(dateEmisssion : Date, imgOrdonnance : String, renouvellement : Int) {
         self.ordonnances.remove(at:  0)
        }
     
     func filterOrdoValides() -> [Ordonnance] {
-        self.ordonnances = self.ordonnances.filter{
-            $0.renouvellement < 3
+        self.ordonnances = self.ordonnances.filter {
+             $0.renouvellement < 3
+        
         }
         return self.ordonnances
     }
     
-    func filterOrdoNonValides() ->[Ordonnance] {
+    func filterOrdoNonValides() -> [Ordonnance] {
         self.ordonnances = self.ordonnances.filter{
             $0.renouvellement >= 3
         }
@@ -43,9 +42,9 @@ class OrdonnanceModel : ObservableObject  {
 
 var ordoExemple : [Ordonnance] = [
 
-Ordonnance(dateEmission: "19-11-22", imgOrdonnance: "ordonnance", renouvellement: 1),
-Ordonnance(dateEmission: "12-09-23", imgOrdonnance: "ordonnance", renouvellement: 2),
-Ordonnance(dateEmission: "13-05-23", imgOrdonnance: "ordonnance", renouvellement: 3)
+Ordonnance(dateEmission: "22-03-24", imgOrdonnance: "ordonnance", renouvellement: 1, index: 0),
+Ordonnance(dateEmission: "10-10-23", imgOrdonnance: "ordonnance", renouvellement: 2, index: 1),
+Ordonnance(dateEmission: "13-02-24", imgOrdonnance: "ordonnance", renouvellement: 3,  index: 2)
 
 
 ]
