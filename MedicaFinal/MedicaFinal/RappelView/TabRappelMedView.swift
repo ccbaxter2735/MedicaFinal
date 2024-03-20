@@ -18,14 +18,18 @@ struct TabRappelMedView: View {
                 .foregroundColor(Color.black)
                 .multilineTextAlignment(.leading)
                 .background(.gray.opacity(0.0))
-//            Spacer()
-            Stepper("Quantité: \(med.dosage)", value: $med.dosage, in: 0...10)
-                .padding(10)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .foregroundColor(Color.black)
-                .multilineTextAlignment(.leading)
-                .background(.gray.opacity(0.0))
+            Spacer()
+            VStack (alignment: .trailing){
+                Text("Quantité : \(med.dosage) ")
+                Stepper("", value: $med.dosage, in: 0...10)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .background(.gray.opacity(0.0))
+            }
+            .padding(.vertical, 5)
+            .padding(.horizontal, 0)
         }
 
     }
