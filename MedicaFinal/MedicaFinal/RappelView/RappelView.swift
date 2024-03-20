@@ -55,3 +55,7 @@ struct RappelView: View {
 #Preview {
     RappelView(tabRappel: TabRappel())
 }
+
+// .frame(width:260, height: 11) Taille du bouton
+// font dans page Util
+// 

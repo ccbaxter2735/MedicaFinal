@@ -26,7 +26,7 @@ struct CalView: View {
                     .fontWeight(.semibold)
                 // rajouter if (condition) avec 4 tableaux selon la date (selectedDate)
                     
-//                   
+//
 //                        List(cals) { cal in
 //                            CalView(cal: cal)
                 

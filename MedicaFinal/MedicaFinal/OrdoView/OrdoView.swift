@@ -85,3 +85,6 @@ struct OrdoView: View {
 #Preview {
     OrdoView()
 }
+
+// taille normal
+// taille bouton
