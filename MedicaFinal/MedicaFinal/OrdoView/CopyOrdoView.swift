@@ -65,8 +65,9 @@ struct CopyOrdoView: View {
                         
                     }
                     .padding(.vertical)
-                    .navigationTitle("Ordonnances en cours")
+                    .navigationTitle("Liste des ordonnances")
                     .pickerStyle(.menu)
+                    
                     
                 } header: {
                     Text("Ordonnances valides")
@@ -101,7 +102,7 @@ struct CopyOrdoView: View {
                     Text("Ordonnances non valides")
                 }
             }
-            .foregroundStyle(.black)
+           .foregroundStyle(.black)
             NavigationLink{
                 
                 OCRView()
