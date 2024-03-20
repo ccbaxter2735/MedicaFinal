@@ -41,6 +41,7 @@ struct InputFieldLogIn_Previews: PreviewProvider {
     @State static var data: String = ""
     static var previews: some View {
         inputFieldLogin(data: $data, title: "Password")
+       
     }
 }
 // Struct pour la coche 'Rester connecté' sur la page signInView

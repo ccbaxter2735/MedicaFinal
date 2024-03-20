@@ -11,44 +11,11 @@ import SwiftUI
 
 struct CalView: View {
     
-    struct MedList: Hashable, Identifiable {
-            let name: String
-            let id = UUID()
-        }
-
-
-        struct RapList: Identifiable {
-            let name: String
-            let medi: [MedList]
-            let id = UUID()
-        }
-
-
-        private let rapLists: [RapList] = [
-            RapList(name: "Epilepsi",
-                    medi: [MedList(name: "Dépakine"),
-                               MedList(name: "Carbamazéphine"),
-                               MedList(name: "Valproate de sodium"),
-                               MedList(name: "Trileptal")]),
-            RapList(name: "Douleur",
-                    medi: [MedList(name: "Dolipran"),
-                               MedList(name: "Dafalgan"),
-                               MedList(name: "Morphine")]),
-            RapList(name: "Insuffisance cardiaque",
-                    medi: [MedList(name: "Acuitel"),
-                               MedList(name: "Périndopril"),
-                               MedList(name: "Ramipril"),
-                               MedList(name: "Triatec")]),
-            RapList(name: "Tension",
-                    medi: [MedList(name: "Aténolol")]),
-            RapList(name: "Anémie",
-                    medi: [MedList(name: "Fer")])
-        ]
-
-
+   
         @State private var singleSelection: UUID?
         @State private var selectedDate: Date = Date()
-  
+  let dateFormatter = DateFormatter()
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -57,13 +24,14 @@ struct CalView: View {
                     .datePickerStyle(.graphical)
                     .padding()
                     .fontWeight(.semibold)
-                
+                // rajouter if (condition) avec 4 tableaux selon la date (selectedDate)
                     
 //                   
 //                        List(cals) { cal in
 //                            CalView(cal: cal)
-                        
-                List(selection: $singleSelection) {
+                
+                switch Int(dayFromDate(selectedDate)) {
+                case 24: List(selection: $singleSelection) {
                     ForEach(rapLists) { rap in
                         Section(header: Text("Rappel \(rap.name)")) {
                             ForEach(rap.medi) { medi in
@@ -71,17 +39,58 @@ struct CalView: View {
                             }
                         }
                     }
+                };
+                case 25 :List(selection: $singleSelection) {
+                    ForEach(rap2Lists) { rap2 in
+                        Section(header: Text("Rappel \(rap2.name)")) {
+                            ForEach(rap2.medi) { medi in
+                                Text(medi.name)
+                            }
+                        }
+                    }
+                };
+                case 26: List(selection: $singleSelection) {
+                    ForEach(rap3Lists) { rap3 in
+                        Section(header: Text("Rappel \(rap3.name)")) {
+                            ForEach(rap3.medi) { medi in
+                                Text(medi.name)
+                            }
+                        }
+                    }
+                };
+                case 27: List(selection: $singleSelection) {
+                    ForEach(rap4Lists) { rap4 in
+                        Section(header: Text("Rappel \(rap4.name)")) {
+                            ForEach(rap4.medi) { medi in
+                                Text(medi.name)
+                            }
+                        }
+                    }
+                };
+                default: List(selection: $singleSelection) {
+                    ForEach(rapLists) { rap in
+                        Section(header: Text("Rappel \(rap.name)")) {
+                            ForEach(rap.medi) { medi in
+                                Text(medi.name)
+                            }
+                        }
+                    }
+                };
                 }
+                    
+                    
                 
-//                RoundedRectangle(cornerRadius: 10)
-//                    .frame(width: 100, height: 100)
+                
             }
             .navigationTitle("Calendar")
 //            .background(.white)
         }
         
     }
-        
+    func dayFromDate(_ date: Date) -> String {
+            dateFormatter.dateFormat = "dd"
+            return dateFormatter.string(from: date)
+        }
     }
 #Preview {
     CalView()

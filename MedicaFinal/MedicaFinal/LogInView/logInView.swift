@@ -138,10 +138,17 @@ struct logInView: View {
                         .foregroundColor(Color("AccentColor"))
                     
                 }
-                VStack(spacing: 8.0) {
-                    inputFieldLogin(data: $username, title: "Identifiant ou adresse mail")
-                    inputFieldLogin(data: $password, title: "Mot de passe")
-                }.padding(.bottom, 12)
+//                HStack {
+//                    Image(systemName: "lock")
+//                        .resizable()
+//                        .frame(width: 30, height: 40)
+//                        .foregroundColor(Color("AccentColor"))
+                    VStack(spacing: 8.0) {
+                        inputFieldLogin(data: $username, title: "Identifiant ou adresse mail")
+                        inputFieldLogin(data: $password, title: "Mot de passe")
+                    }.padding(.bottom, 12)
+//                }
+                
                 HStack {
                     Toggle(isOn: $isOn) {
                         Text("Rester connecté")
