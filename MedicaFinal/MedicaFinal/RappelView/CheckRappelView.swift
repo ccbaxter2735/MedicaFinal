@@ -16,7 +16,7 @@ struct CheckRappelView: View {
     // ------------- body checkRappelView ----------------
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
-            RappTitleView(rapp: rapp)
+            RappTitleView(rapp: rapp, tabRappel: tabRappel)
             if (rapp.finish == false) {
                 VStack (spacing: 5) {
                     ForEach (rapp.tabMed) { tab in

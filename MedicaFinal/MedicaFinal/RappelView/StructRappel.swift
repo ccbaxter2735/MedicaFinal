@@ -85,6 +85,7 @@ class TabMedicament: ObservableObject {
 // MARK: tableau de rappel vide
 class TabRappel: ObservableObject {
     @Published var rappel: [Rappel] = rappelTest
+    @Published var endDay: Bool = false
     
     // MARK: filtre les rappels qui sont auj et les ordonnent par heure
     func sortFilterTabRappel() -> [Rappel] {
@@ -96,6 +97,17 @@ class TabRappel: ObservableObject {
         }
         return self.rappel;
     }
+    
+    // MARK: check if the whole medicament have been taken
+    func checkRappelOK() {
+        for it in self.rappel {
+            if (it.finish == false) {
+                return
+            }
+        }
+        self.endDay = true
+    }
+
     
     // MARK: filtre les rappels qui sont auj et les ordonnent par heure
     func testCongrats() -> Bool {

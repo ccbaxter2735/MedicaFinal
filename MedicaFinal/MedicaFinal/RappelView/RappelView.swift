@@ -35,7 +35,7 @@ struct RappelView: View {
                                 CheckRappelView(rapp: tab, tabRappel: tabRappel)
                                     .padding(10)
                             }
-                            if (tabRappel.testCongrats() == true) {
+                            if (tabRappel.endDay == true) {
                                 CongratsView()
                                     .padding(10)
                             }

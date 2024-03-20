@@ -115,13 +115,26 @@ struct SelectionWE: View {
 struct RappTitleView: View {
     
     @ObservedObject var rapp: Rappel
+    @ObservedObject var tabRappel: TabRappel
     
+    func testCongratulation (tabRappel: TabRappel) -> Bool {
+        for tab in tabRappel.rappel {
+            if (tab.finish == false) {
+                return false
+            }
+        }
+        return true
+    }
+
     var body: some View {
         VStack {
             HStack (alignment: .top, spacing: 20, content: {
                 Button(action: {
                     rapp.finish = !rapp.finish
                     rapp.validRappel()
+                    if (rapp.finish == true) {
+                        tabRappel.checkRappelOK()
+                    }
                 }, label: {
                     CheckImageView(tabM: rapp.finish)
                 })
@@ -169,6 +182,15 @@ struct MedView: View {
     @ObservedObject var tabM: RappelMed
     @ObservedObject var tabRappel: TabRappel
     
+    func testCongratulation (tabRappel: TabRappel) -> Bool {
+        for tab in tabRappel.rappel {
+            if (tab.finish == false) {
+                return false
+            }
+        }
+        return true
+    }
+    
     var body: some View {
         VStack {
             Divider()
@@ -177,6 +199,11 @@ struct MedView: View {
                 Button(action: {
                     tabM.confirm = !tabM.confirm
                     rapp.checkMedicament()
+                    if (rapp.finish == true) {
+                        if (testCongratulation(tabRappel: tabRappel) == true) {
+                            tabRappel.endDay = true
+                        }
+                    }
                 }, label: {
                     CheckImageView(tabM: tabM.confirm)
                 })

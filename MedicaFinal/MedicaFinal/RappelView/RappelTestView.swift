@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: vue global de rappel
 struct RappelTestView: View {
+    @ObservedObject var tabRappel: TabRappel
     // filtre si le rappel est bien today
     var tabR: [Rappel] = rappelTest.filter {
         isDay(tabInt: $0.weekday) == true
@@ -21,7 +22,7 @@ struct RappelTestView: View {
                 VStack {
                     ScrollView {
                         ForEach(tabR) { tab in
-                            CheckView(rapp: tab)
+                            CheckView(rapp: tab, tabRappel: tabRappel)
                         }
                         
                     }
@@ -33,15 +34,16 @@ struct RappelTestView: View {
     }
 }
 
-#Preview {
-    RappelTestView()
-}
+//#Preview {
+////    RappelTestView()
+//}
 
 // MARK: view de chaque rappel dans la RappelView
 struct CheckView: View {
     // ------------- var checkView -----------------
     
     @ObservedObject var rapp: Rappel
+    @ObservedObject var tabRappel: TabRappel
     
     // ------------- body checkView ----------------
     var body: some View {
@@ -51,7 +53,7 @@ struct CheckView: View {
                 .foregroundColor(.white)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             VStack {
-                RappTitleView(rapp: rapp)
+                RappTitleView(rapp: rapp, tabRappel: tabRappel)
                 //                List {
                 //                    Section {
                 //                        DisclosureGroup("titre de disclosure") {
