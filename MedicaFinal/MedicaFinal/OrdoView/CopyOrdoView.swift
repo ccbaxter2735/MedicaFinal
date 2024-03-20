@@ -43,7 +43,7 @@ struct CopyOrdoView: View {
                             VStack(alignment: .leading){
                                 
                                 Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
+                                    
                                 
                                 
                             }
@@ -79,7 +79,7 @@ struct CopyOrdoView: View {
                             VStack(alignment: .leading){
                                 
                                 Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
+                                   
                                 
                                 
                             }
