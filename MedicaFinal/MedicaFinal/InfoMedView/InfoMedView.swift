@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct InfoMedView: View {
-    @ObservedObject var listMed: TabMedicament
-    @ObservedObject var tabMed: TabRappelMed
+    var listMed: TabMedicament = TabMedicament()
+    var tabMed: TabRappelMed = TabRappelMed()
     @State var searchText = ""
     
     var body: some View {
