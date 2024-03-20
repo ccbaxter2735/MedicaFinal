@@ -243,9 +243,9 @@ var rappelTest: [Rappel] = [
 ]
 
 var baseDonneesMed: [Medicament] = [
-    Medicament(name: "Doliprane", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Dafalgan", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Spasfon", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg")
+    Medicament(name: "Doliprane 500mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.pastille, imgTypeAdmin: "pastille(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Dafalgan 1000mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Spasfon lyoc", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
+    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.pulverisation, imgTypeAdmin: "pulvérisation(s)", imgMed: "Doliprane_500mg")
 ]
 // dosage par demi !!! pb dosage + image a revoir

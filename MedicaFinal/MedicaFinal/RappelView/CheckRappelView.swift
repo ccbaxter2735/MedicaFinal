@@ -11,6 +11,7 @@ import SwiftUI
 struct CheckRappelView: View {
     // ------------- var checkRappelView -----------------
     @ObservedObject var rapp: Rappel
+    @ObservedObject var tabRappel: TabRappel
     
     // ------------- body checkRappelView ----------------
     var body: some View {
@@ -19,7 +20,7 @@ struct CheckRappelView: View {
             if (rapp.finish == false) {
                 VStack (spacing: 5) {
                     ForEach (rapp.tabMed) { tab in
-                        MedView(rapp: rapp, tabM: tab)
+                        MedView(rapp: rapp, tabM: tab, tabRappel: tabRappel)
                     }
                 }
             }
@@ -33,6 +34,6 @@ struct CheckRappelView: View {
 }
 
 #Preview {
-//    CheckRappelView(rapp: rappelTest[0])
-    CongratsView()
+    CheckRappelView(rapp: rappelTest[0], tabRappel: TabRappel())
+//    CongratsView()
 }

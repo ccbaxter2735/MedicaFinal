@@ -32,10 +32,10 @@ struct RappelView: View {
                     ScrollView {
                         VStack(content: {
                             ForEach(tabRappel.sortFilterTabRappel()) { tab in
-                                CheckRappelView(rapp: tab)
+                                CheckRappelView(rapp: tab, tabRappel: tabRappel)
                                     .padding(10)
                             }
-                            if (tabRappel.testCongrats() == false) {
+                            if (tabRappel.testCongrats() == true) {
                                 CongratsView()
                                     .padding(10)
                             }

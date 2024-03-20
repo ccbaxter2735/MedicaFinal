@@ -167,6 +167,7 @@ struct MedView: View {
     
     @ObservedObject var rapp: Rappel
     @ObservedObject var tabM: RappelMed
+    @ObservedObject var tabRappel: TabRappel
     
     var body: some View {
         VStack {
@@ -206,14 +207,16 @@ struct MedView: View {
                                 .font(.caption)
                             Text(tabM.med.typeAdmin.rawValue)
                                 .font(.caption)
-                            ForEach(0..<tabM.dosage) { index in
-                                Image(systemName: "pill") // Image à répéter
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                
-                                    .frame(width: 10) // Taille de l'image
+                            HStack (alignment: .center, spacing: 2){
+                                ForEach(0..<tabM.dosage) { index in
+                                    Image(tabM.med.imgTypeAdmin) // Image à répéter
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 20) // Taille de l'image
+                                }
+                                .font(.caption)
                             }
-                            .font(.caption)
+                            .padding(.horizontal, 5)
                         }
                     }
                 }
@@ -316,8 +319,8 @@ struct searchMedView: View {
 }
     
     #Preview {
-        RappTitleView(rapp: rappelTest[0])
-//        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
+//        RappTitleView(rapp: rappelTest[0])
+        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[3], tabRappel: TabRappel())
     //    CircleChoixJours(text: "Lun")
     //    CircledText(text: "lun", test: false)
 //        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())

@@ -57,7 +57,7 @@ struct CheckView: View {
                 //                        DisclosureGroup("titre de disclosure") {
                 VStack (alignment: .leading) {
                     ForEach (rapp.tabMed) { tab in
-                        MedView(rapp: rapp, tabM: tab)
+                        MedView(rapp: rapp, tabM: tab, tabRappel: TabRappel())
                     }
                 }
             }
