@@ -7,50 +7,60 @@
 
 import SwiftUI
 
-struct CopyOrdoView: View {
-    @ObservedObject var ordoModel = OrdonnanceModel()
-    @State var OCR = OCRView()
-    @State var test = ""
+struct PickerRenouvellement: View {
+    @State var nombreDerenouvellement: Int = 0
     
     var body: some View {
         
+        Picker("Renouvellement:", selection: $nombreDerenouvellement) {
+            ForEach(1..<4) {
+                Text("\($0)/3")
+            }
+            
+            
+        }
         
         
+        
+    }
+}
+
+struct CopyOrdoView: View {
+    @State var ordoModel = OrdonnanceModel()
+    var body: some View {
         NavigationStack{
-            
-            
-            
-            
             NavigationView{
                 List{
-                    ForEach(ordoModel.ordonnances){ ordonnance in
-                        
-                        HStack(spacing: 100){
-                            NavigationLink(destination: Image("ordonnance")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 800)
-                               
-                            )
-                            {
-                                VStack(alignment: .leading){
-                                    
-                                    Text("Ordonnance du \(ordonnance.dateEmission)")
-                                        .font(.caption)
-                                }
+                    ForEach(ordoModel.filterOrdoValides()){ ordonnance in
+                        NavigationLink(destination: Image("ordonnance")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 800)
+                                       
+                        )
+                        {
+                            VStack(alignment: .leading){
+                                
+                                Text("Ordonnance du \(ordonnance.dateEmission)")
+                                    .font(.caption)
                                 
                                 
-                                
-                                VStack(alignment: .trailing){
-                                    Text("Renouvellement \(ordonnance.renouvellement)/3")
-                                        .font(.caption)
-                                    
-                                }
                             }
+                            .padding(.trailing)
+                            
+                            
+                            VStack(alignment: .leading){
+                                PickerRenouvellement()
+                                    .font(.caption)
+                                
+                            }
+                            .padding(.leading)
+                            
                             
                         }
+                        .padding(.vertical)
                         .navigationTitle("Ordonnances en cours")
-                        .padding()
+                        
                     } // ForEach
                 } // List
             }
@@ -66,28 +76,25 @@ struct CopyOrdoView: View {
             .padding()
             .foregroundStyle(.white)
             .background(RoundedRectangle(cornerRadius: 10))
-            .foregroundStyle(.mint)
+            .foregroundColor(.accentColor)
             
-            Button(action: {
+          /*  Button(action: {
                 ordoModel.addOrdonnance(dateEmisssion: .now, imgOrdonnance: "tori", renouvellement: 1)
             }, label: {
                 Text("Ajouter un ordo manuellement")
             })
-            Button(action: {
+       Button(action: {
                 ordoModel.DeleteOrdonnance(dateEmisssion: .now, imgOrdonnance: "tori", renouvellement: 0)
             }, label: {
                 Text("Supprimer un ordo manuellement")
-            })
+            }) */
+            
         } // Nav stack
         .foregroundStyle(.black)
         
     }
     
 }
-
-
-
-
 
 #Preview {
     CopyOrdoView()

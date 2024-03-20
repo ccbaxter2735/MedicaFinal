@@ -9,10 +9,10 @@ import Foundation
 
 
 
-class OrdonnanceModel : ObservableObject {
+class OrdonnanceModel : ObservableObject  {
     
     
-    @Published var ordonnances : [Ordonnance] = []
+    @Published var ordonnances : [Ordonnance] = ordoExemple
     
    
     
@@ -21,6 +21,31 @@ class OrdonnanceModel : ObservableObject {
        }
     
     func DeleteOrdonnance(dateEmisssion : Date, imgOrdonnance : String, renouvellement : Int) {
-        self.ordonnances.remove(at:  1)
+        self.ordonnances.remove(at:  0)
        }
+    
+    func filterOrdoValides() -> [Ordonnance] {
+        self.ordonnances = self.ordonnances.filter{
+            $0.renouvellement < 3
+        }
+        return self.ordonnances
+    }
+    
+    func filterOrdoNonValides() ->[Ordonnance] {
+        self.ordonnances = self.ordonnances.filter{
+            $0.renouvellement >= 3
+        }
+        return self.ordonnances
+    }
+    
 }
+
+
+var ordoExemple : [Ordonnance] = [
+
+Ordonnance(dateEmission: "19-11-22", imgOrdonnance: "ordonnance", renouvellement: 1),
+Ordonnance(dateEmission: "12-09-23", imgOrdonnance: "ordonnance", renouvellement: 2),
+Ordonnance(dateEmission: "13-05-23", imgOrdonnance: "ordonnance", renouvellement: 3)
+
+
+]
