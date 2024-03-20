@@ -7,102 +7,69 @@
 
 import SwiftUI
 
-struct PickerRenouvellement: View {
-    @Binding var nombreDerenouvellement : Int
-    
+struct detailOrdo: View {
+    @ObservedObject var ordo: Ordonnance
     var body: some View {
-        
-        Picker("Renouvellement:", selection: $nombreDerenouvellement) {
-            ForEach(1..<4) {
-                Text("\($0)/3")
+        HStack (alignment: .center) {
+            VStack(alignment: .leading){
+                
+                Text("Ordonnance du \(ordo.dateEmission)")
+                    .font(.headline)
             }
-            
-            
+            .padding(.trailing)
+            VStack(alignment: .trailing){
+                Text("Renouv. : \(ordo.renouvellement)/3  ")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.trailing)
+                Stepper("", value: $ordo.renouvellement, in: 0...4)
+            }
+            .padding(.trailing)
         }
-        
-        
-        
     }
 }
 
 struct CopyOrdoView: View {
-    @State var nombreDerenouvellement: [Int] = Array(repeating: 0, count: 3)
+    var ordoModel: OrdonnanceModel = OrdonnanceModel()
     
-    
-    
-    
-    var i: Int = 0
-    @State var ordoModel = OrdonnanceModel()
     var body: some View {
         NavigationStack{
             List {
                 Section {
                     ForEach(ordoModel.filterOrdoValides()){
                         ordonnance in
-                        HStack{
-                            VStack(alignment: .leading){
-                                
-                                Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
-                                
-                                
+                        NavigationLink {
+                            ScrollView {
+                                Image(ordonnance.imgOrdonnance)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: UIScreen.main.bounds.width - 10)
                             }
-                            .padding(.trailing)
-                            
-                            
-                            VStack(alignment: .leading){
-                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
-                                
-                                
-                                    .font(.caption)
-                                
-                            }
-                            .padding(.leading)
+                        } label: {
+                            detailOrdo(ordo: ordonnance)
                         }
-                        
-                        
-                        
-                        
                     }
                     .padding(.vertical)
-                    .navigationTitle("Liste des ordonnances")
+                    .navigationTitle("Ordonnances")
                     .pickerStyle(.menu)
-                    
                     
                 } header: {
                     Text("Ordonnances valides")
                 }
                 
                 Section {
-                    ForEach(ordoModel.filterOrdoNonValides()){ ordonnance in
-                        HStack{
-                            VStack(alignment: .leading){
-                                
-                                Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
-                                
-                                
-                            }
-                            .padding(.trailing)
-                            
-                            
-                            VStack(alignment: .leading){
-                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
-                                
-                                
-                                    .font(.caption)
-                                
-                            }
-                            .padding(.leading)
-                        }
-                        
+                    ForEach(ordoModel.filterOrdoNonValides()){
+                        ordonnance in
+                        detailOrdo(ordo: ordonnance)
                     }
-                } header: {
+                    .padding(.vertical)
+                    .navigationTitle("Ordonnances en cours")
+                    .pickerStyle(.menu)
                     
+                } header: {
                     Text("Ordonnances non valides")
                 }
             }
-           .foregroundStyle(.black)
+            .foregroundStyle(.black)
             NavigationLink{
                 
                 OCRView()
@@ -119,6 +86,5 @@ struct CopyOrdoView: View {
 }
 
 #Preview {
-    CopyOrdoView()
+    CopyOrdoView(ordoModel: OrdonnanceModel())
 }
-
