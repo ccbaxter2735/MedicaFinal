@@ -272,12 +272,13 @@ struct intPicker: View {
 
 struct showTabMedView: View {
     @State var tabMed: [RappelMed]
-    @State var dosage: Int
+    @State var dosage: Int = 1
     var body: some View {
         VStack (alignment: .center, content: {
             ForEach(tabMed) { tab in
                 HStack(alignment: .center, content: {
                     Text(tab.med.name)
+                    Spacer()
                     intPicker(dosage: tab.dosage)
                 })
                 .padding(10)

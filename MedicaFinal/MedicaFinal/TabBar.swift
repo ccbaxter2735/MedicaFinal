@@ -31,13 +31,13 @@ struct TabBar: View {
                         icon: { Image(systemName: "doc")}
                     )
                 }
-            InfoMedView()
-                .tabItem {
-                    Label(
-                        title: { Text("info") },
-                        icon: { Image(systemName: "info")}
-                    )
-                }
+//            InfoMedView()
+//                .tabItem {
+//                    Label(
+//                        title: { Text("info") },
+//                        icon: { Image(systemName: "info")}
+//                    )
+//                }
             ProfilView()
                 .tabItem {
                     Label(
