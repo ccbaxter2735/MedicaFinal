@@ -250,7 +250,8 @@ struct MedView: View {
                 Spacer()
                 Image(tabM.med.imgMed)
                     .resizable()
-                    .frame(width: 50, height: 40)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 35)
                 
             })
         }

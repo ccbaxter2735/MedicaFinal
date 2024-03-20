@@ -244,7 +244,7 @@ var rappelTest: [Rappel] = [
     Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
         RappelMed(med: baseDonneesMed[0], confirm: false, dosage: 2),
         RappelMed(med: baseDonneesMed[1], confirm: false, dosage: 1),
-        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 4),
+        RappelMed(med: baseDonneesMed[2], confirm: false, dosage: 3),
         RappelMed(med: baseDonneesMed[3], confirm: false, dosage: 2)
     ], color: .white, finish: false, typeRappel: TypeRappel.alarme),
     Rappel(name: "Anti-douleur", weekday: [1, 2, 3, 4, 5, 6], hPrise: "09:00", tabMed: [
@@ -255,9 +255,9 @@ var rappelTest: [Rappel] = [
 ]
 
 var baseDonneesMed: [Medicament] = [
-    Medicament(name: "Doliprane 500mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.pastille, imgTypeAdmin: "pastille(s)", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Dafalgan 1000mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Spasfon lyoc", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "Doliprane_500mg"),
-    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.pulverisation, imgTypeAdmin: "pulvérisation(s)", imgMed: "Doliprane_500mg")
+    Medicament(name: "Doliprane 500mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.pastille, imgTypeAdmin: "pastille(s)", imgMed: "doliprane"),
+    Medicament(name: "Dafalgan 1000mg", detailMed: "Anti-douleur", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "dafalgan"),
+    Medicament(name: "Spasfon lyoc", detailMed: "Anti-spasmodique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprimé(s)", imgMed: "spasfon"),
+    Medicament(name: "Derinox", detailMed: "Déboucheur nasale", typeAdmin: TypeAdmin.pulverisation, imgTypeAdmin: "pulvérisation(s)", imgMed: "derinox")
 ]
 // dosage par demi !!! pb dosage + image a revoir
