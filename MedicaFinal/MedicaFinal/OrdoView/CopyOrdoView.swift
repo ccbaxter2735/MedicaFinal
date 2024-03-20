@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-struct PickerRenouvellement: View {
-    @Binding var nombreDerenouvellement : Int
-    
-    var body: some View {
-        
-        Picker("Renouvellement:", selection: $nombreDerenouvellement) {
-            ForEach(1..<4) {
-                Text("\($0)/3")
-            }
-            
-            
-        }
-        
-        
-        
-    }
-}
-
 struct detailOrdo: View {
     @ObservedObject var ordo: Ordonnance
     var body: some View {
@@ -39,8 +21,6 @@ struct detailOrdo: View {
                 Text("Renouvellement : \(ordo.renouvellement)/3")
                     .font(.subheadline)
                 Stepper("", value: $ordo.renouvellement, in: 0...4)
-                //                    .font(.caption)
-                
             }
             .padding(.leading)
         }
