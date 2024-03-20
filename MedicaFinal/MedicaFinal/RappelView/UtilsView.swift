@@ -31,7 +31,7 @@ struct CircledText: View {
     
     let text: String
     var test: Bool
-    var radius = ((UIScreen.main.bounds.width - 56) / 7)
+    var radius = ((UIScreen.main.bounds.width - 56) / 6)
     
     var body: some View {
         if (test == false) {
@@ -78,37 +78,100 @@ struct CircleChoixJours: View {
     }
 }
 
+// MARK: affiche la selection jours de semaine
+struct SelectionSem: View {
+    @Binding var state: [Bool]
+    @Binding var weekday: [Int]
+    
+    var body: some View {
+        HStack {
+            CircleChoixJours(tabInt: $weekday, text: "Lun", i: 2, test: $state[1])
+            Spacer()
+            CircleChoixJours(tabInt: $weekday, text: "Mar", i: 3, test: $state[2])
+            Spacer()
+            CircleChoixJours(tabInt: $weekday, text: "Mer", i: 4, test: $state[3])
+            Spacer()
+            CircleChoixJours(tabInt: $weekday, text: "Jeu", i: 5, test: $state[4])
+            Spacer()
+            CircleChoixJours(tabInt: $weekday, text: "Ven", i: 6, test: $state[5])
+        }
+    }
+}
+
+// MARK: affiche la selection jours de weekend
+struct SelectionWE: View {
+    @Binding var state: [Bool]
+    @Binding var weekday: [Int]
+    
+    var body: some View {
+        HStack {
+            CircleChoixJours(tabInt: $weekday, text: "Sam", i: 7, test: $state[6])
+            CircleChoixJours(tabInt: $weekday, text: "Dim", i: 1, test: $state[0])
+        }
+    }
+}
+
 // MARK: affiche le titre des rappels avant la liste de medicament
 struct RappTitleView: View {
     
     @ObservedObject var rapp: Rappel
+    @ObservedObject var tabRappel: TabRappel
     
-    var body: some View {
-        HStack (alignment: .top, spacing: 30, content: {
-            Button(action: {
-                rapp.finish = !rapp.finish
-                rapp.validRappel()
-            }, label: {
-                CheckImageView(tabM: rapp.finish)
-            })
-            VStack (alignment: .leading, content: {
-                Text("Penser à prendre à")
-                    .font(.headline)
-                Text(rapp.name)
-                    .font(.subheadline)
-            })
-            Image(systemName: "alarm")
-            VStack (alignment: .trailing){
-                Text(rapp.hPrise)
-                    .foregroundColor(rapp.checkRetard())
-                    .background(.thinMaterial)
-                if (rapp.checkRetard() == .red) {
-                    Text("Retard")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.red)
-                }
+    func testCongratulation (tabRappel: TabRappel) -> Bool {
+        for tab in tabRappel.rappel {
+            if (tab.finish == false) {
+                return false
             }
-        })
+        }
+        return true
+    }
+
+    var body: some View {
+        VStack {
+            HStack (alignment: .top, spacing: 20, content: {
+                Button(action: {
+                    rapp.finish = !rapp.finish
+                    rapp.validRappel()
+                    if (rapp.finish == true) {
+                        tabRappel.checkRappelOK()
+                    }
+                }, label: {
+                    CheckImageView(tabM: rapp.finish)
+                })
+                VStack (alignment: .leading, content: {
+                    Text("Pensez à prendre à")
+                        .font(.subheadline)
+                        .fontWeight(.regular)
+                        .foregroundColor(rapp.colorT)
+//                        .fontWeight(.heavy)
+                    Text(rapp.name)
+                        .font(.headline)
+                        .foregroundColor(rapp.colorT)
+                        .fontWeight(.heavy)
+                })
+                Spacer()
+                HStack {
+                    Image(systemName: "alarm")
+                    VStack (alignment: .trailing){
+                        if (rapp.finish == true) {
+                            Text("Validé")
+                                .foregroundColor(.accentColor)
+                                .background(.thinMaterial)
+                        } else {
+                            Text(rapp.hPrise)
+                                .foregroundColor(rapp.checkRetard())
+                                .background(.thinMaterial)
+                            if (rapp.checkRetard() == .red) {
+                                Text("Retard")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.red)
+                            }
+                        }
+                    }
+                }
+            })
+        }
+        .frame(width: UIScreen.main.bounds.width - 40)
     }
 }
 
@@ -117,58 +180,81 @@ struct MedView: View {
     
     @ObservedObject var rapp: Rappel
     @ObservedObject var tabM: RappelMed
+    @ObservedObject var tabRappel: TabRappel
+    
+    func testCongratulation (tabRappel: TabRappel) -> Bool {
+        for tab in tabRappel.rappel {
+            if (tab.finish == false) {
+                return false
+            }
+        }
+        return true
+    }
     
     var body: some View {
-        HStack (alignment: .top, spacing: 30, content: {
-            Button(action: {
-                tabM.confirm = !tabM.confirm
-                rapp.checkMedicament()
-            }, label: {
-                CheckImageView(tabM: tabM.confirm)
-            })
-            VStack (alignment: .leading) {
-                if (tabM.confirm == true) {
-                    Text(tabM.med.name)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .strikethrough()
-                    HStack {
-                        Text(String(tabM.dosage))
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .strikethrough()
-                        Text(tabM.med.typeAdmin.rawValue)
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .strikethrough()
-                    }
-                } else {
-                    Text(tabM.med.name)
-                        .font(.caption)
-                        .foregroundColor(.black)
-                    HStack {
-                        Text(String(tabM.dosage))
-                            .font(.caption)
-                        Text(tabM.med.typeAdmin.rawValue)
-                            .font(.caption)
-                        ForEach(0..<2) { _ in
-                            Image(systemName: "pill") // Image à répéter
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                            
-                                .frame(width: 10) // Taille de l'image
+        VStack {
+            Divider()
+                .padding(5)
+            HStack (alignment: .center, spacing: 30, content: {
+                Button(action: {
+                    tabM.confirm = !tabM.confirm
+                    rapp.checkMedicament()
+                    if (rapp.finish == true) {
+                        if (testCongratulation(tabRappel: tabRappel) == true) {
+                            tabRappel.endDay = true
                         }
-                        .font(.caption)
+                    }
+                }, label: {
+                    CheckImageView(tabM: tabM.confirm)
+                })
+                VStack (alignment: .leading, spacing: 2) {
+                    if (tabM.confirm == true) {
+                        Text(tabM.med.name)
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.gray)
+                            .strikethrough()
+                        HStack {
+                            Text(String(tabM.dosage))
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .strikethrough()
+                            Text(tabM.med.typeAdmin.rawValue)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .strikethrough()
+                        }
+                    } else {
+                        Text(tabM.med.name)
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        HStack {
+                            Text(String(tabM.dosage))
+                                .font(.caption)
+                            Text(tabM.med.typeAdmin.rawValue)
+                                .font(.caption)
+                            HStack (alignment: .center, spacing: 2){
+                                ForEach(0..<tabM.dosage) { index in
+                                    Image(tabM.med.imgTypeAdmin) // Image à répéter
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 20) // Taille de l'image
+                                }
+                                .font(.caption)
+                            }
+                            .padding(.horizontal, 5)
+                        }
                     }
                 }
-            }
-            Spacer()
-            Image(tabM.med.imgMed)
-                .resizable()
-                .frame(width: 50, height: 40)
-            
-        })
-        .frame(minWidth: 0, maxWidth: 300, alignment: .leading)
+                Spacer()
+                Image(tabM.med.imgMed)
+                    .resizable()
+                    .frame(width: 50, height: 40)
+                
+            })
+        }
+        .frame(width: UIScreen.main.bounds.width - 50)
     }
 }
 
@@ -186,12 +272,13 @@ struct intPicker: View {
 
 struct showTabMedView: View {
     @State var tabMed: [RappelMed]
-    @State var dosage: Int
+    @State var dosage: Int = 1
     var body: some View {
         VStack (alignment: .center, content: {
             ForEach(tabMed) { tab in
                 HStack(alignment: .center, content: {
                     Text(tab.med.name)
+                    Spacer()
                     intPicker(dosage: tab.dosage)
                 })
                 .padding(10)
@@ -200,43 +287,53 @@ struct showTabMedView: View {
     }
 }
 
-struct ListMedView: View {
-    @ObservedObject var medicament: TabMedicament
-    @State var tabMed: [RappelMed]
-    var bool: [Bool] = Array(repeating: false, count: 4)
-    var body: some View {
-//        ForEach (medicament.med.indices.map({$0}), id: \.1) { index, tab in
-//            HStack (alignment: .center, spacing: 10) {
-//                Button (action: {
-//                    bool[index] = !bool[index]
-//                    tabMed.append(RappelMed(med: index, dosage: 1))
-//                }, label: {
-//                    CheckImageView(tabM: bool[index])
-//                })
-                Text("index.name")
-                Spacer()
-                Text("index.detailMed")
-//            }
-//        }
-    }
-}
-
+// MARK: Modal de selection de medicament dans base de données
 struct searchMedView: View {
     @ObservedObject var listMed: TabMedicament
-    @State var tabMed: [RappelMed]
+    @ObservedObject var tabMed: TabRappelMed
     @State var searchText = ""
-    @State var multiSelection = Set<UUID>()
+    @State private var multiSelection = Set<UUID>()
+    @State var tabString: [Medicament] = []
+    @State private var copytab: [Medicament] = []
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    // MARK: Méthode pour récupérer les noms des éléments sélectionnés
+    private func selectedMedNames(meds: [Medicament], multiSelection: Set<UUID>) -> [Medicament] {
+        var selectedNames: [Medicament] = []
+        for med in meds {
+            if multiSelection.contains(med.id) {
+                selectedNames.append(Medicament(name: med.name, detailMed: med.imgMed, typeAdmin: med.typeAdmin, imgTypeAdmin: med.imgTypeAdmin, imgMed: med.imgMed))
+            }
+        }
+        return selectedNames
+    }
+    
     var body: some View {
         NavigationView {
-            List (listMed.med, selection: $multiSelection) { index in
-                Text(index.name)
+            List(tabA, selection: $multiSelection) {
+                Text($0.name)
             }
             .navigationTitle("Médicaments")
-            .toolbar {
-                 EditButton()
-             }
+            .environment(\.editMode, .constant(EditMode.active))
+            
         }
-        .searchable(text: $searchText, prompt: "rechercher médicament")
+        .searchable(text: $searchText, prompt: "rechercher médicaments")
+        Text("\(multiSelection.count) médicaments sélectionnés")
+//        Button de retour arriere
+        Button() {
+            tabString = selectedMedNames(meds: listMed.med, multiSelection: multiSelection)
+            for medic in tabString {
+                tabMed.addNewRappelMed(new: medic)
+            }
+            presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Ajouter médicaments")
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.accentColor).cornerRadius(10)
+            }
+        
     }
     var tabA: [Medicament] {
         if searchText.isEmpty {
@@ -248,11 +345,11 @@ struct searchMedView: View {
         }
     }
 }
-
-//#Preview {
-////    RappTitleView(rapp: rappel[0])
-////    MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[0])
-////    CircleChoixJours(text: "Lun")
-////    CircledText(text: "lun", test: false)
-////    searchMedView(listMed: baseDonneesMed)
-//}
+    
+    #Preview {
+//        RappTitleView(rapp: rappelTest[0])
+        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[3], tabRappel: TabRappel())
+    //    CircleChoixJours(text: "Lun")
+    //    CircledText(text: "lun", test: false)
+//        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
+    }

@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: vue global de rappel
 struct RappelView: View {
     // ------------- var RappelView -----------------
-    var tabRappel: TabRappel = TabRappel()
-    var tabMedicament: TabMedicament = TabMedicament()
+    /*@ObservedObject */var tabRappel: TabRappel = TabRappel()
+    /*@ObservedObject */var tabMedicament: TabMedicament = TabMedicament()
     
     // ---------- function RappelView ---------------
     func screenToday() -> String {
@@ -30,10 +30,18 @@ struct RappelView: View {
                         .font(.headline)
                         .foregroundColor(Color.blue)
                     ScrollView {
-                        ForEach(tabRappel.sortFilterTabRappel()) { tab in
-                            CheckRappelView(rapp: tab)
-                        }
-                        .padding()
+                        VStack(content: {
+                            ForEach(tabRappel.sortFilterTabRappel()) { tab in
+//                                Text(tab.name)
+                                CheckRappelView(rapp: tab, tabRappel: tabRappel)
+                                    .padding(10)
+                            }
+                            if (tabRappel.endDay == false) {
+                                CongratsView()
+                                    .padding(10)
+                            }
+                        })
+                        
                     }
                     .background(.thinMaterial)
                     Spacer()
@@ -45,6 +53,7 @@ struct RappelView: View {
                             .background(Color.accentColor)
                             .cornerRadius(10)
                     }
+                    .padding([.leading, .bottom, .trailing], 30)
                 })
             .navigationTitle("Rappel")
             .background(.white)
@@ -53,5 +62,5 @@ struct RappelView: View {
 }
 
 #Preview {
-    RappelView(tabRappel: TabRappel())
+    RappelView(tabRappel: TabRappel(), tabMedicament: TabMedicament())
 }
