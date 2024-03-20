@@ -74,13 +74,16 @@ struct CopyOrdoView: View {
                 
                 OCRView()
             } label: {
-                
                 Text("Ajouter une ordonnance")
+                    .frame(width: 260, height: 11)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.accentColor)
+                    .cornerRadius(8)
+
+                    
             }
-            .padding()
-            .foregroundStyle(.white)
-            .background(RoundedRectangle(cornerRadius: 10))
-            .foregroundColor(.accentColor)
+            .padding([.leading, .bottom, .trailing], 20)
         }
     }
 }

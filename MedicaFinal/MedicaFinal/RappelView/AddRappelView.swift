@@ -38,15 +38,10 @@ struct addRappelView: View {
                     VStack(alignment: .leading, content: {
                         Text("Titre du rappel:")
                             .font(.headline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .background(.gray.opacity(0.0))
-                        Text("(donner un nom à votre rappel exemple: epilepsie)")
-                            .font(.subheadline)
-                            .fontWeight(.thin)
-                            .foregroundColor(Color.black)
-                            .background(.gray.opacity(0.0))
-                        TextField("", text: $name)
+                        TextField("exemple: epilepsie", text: $name)
                             .padding(.horizontal, 10)
                             .frame(height: 40)
                             .overlay(
@@ -58,12 +53,12 @@ struct addRappelView: View {
                     VStack(alignment: .leading, content: {
                         Text("Jour(s) du rappel:")
                             .font(.headline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .background(.gray.opacity(0.0))
                         Text("(cochez le ou les jours auquels vous souhaitez être rappelé)")
                             .font(.subheadline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
                             .background(.gray.opacity(0.0))
@@ -75,12 +70,12 @@ struct addRappelView: View {
                         VStack (alignment: .leading){
                             Text("Heure du rappel:")
                                 .font(.headline)
-                                .fontWeight(.thin)
+                                .fontWeight(.regular)
                                 .foregroundColor(Color.black)
                                 .background(.gray.opacity(0.0))
                             Text("(indiquez l'heure souhaité)")
                                 .font(.subheadline)
-                                .fontWeight(.thin)
+                                .fontWeight(.regular)
                                 .foregroundColor(Color.black)
                                 .multilineTextAlignment(.leading)
                                 .background(.gray.opacity(0.0))
@@ -92,17 +87,23 @@ struct addRappelView: View {
                     HStack {
                         Text("Médicaments du rappel:")
                             .font(.headline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .background(.gray.opacity(0.0))
                         Spacer()
                         NavigationLink(destination: searchMedView(listMed: tabMedicament, tabMed: tabMed)) {
                             // MARK: vue d'ajout de rappel
                             Text("Ajouter médicament")
-                                .padding(10)
-                                .foregroundColor(.white)
-                                .background(Color.accentColor)
-                                .cornerRadius(10)
+                                .frame(width:160, height: 11)
+                                .padding()
+                                .foregroundColor(Color("AccentColor"))
+                                .background(
+                                    RoundedRectangle(
+                                        cornerRadius: 8,
+                                        style: .continuous
+                                    )
+                                    .stroke(Color("AccentColor"), lineWidth: 2)
+                                )
                         }
                     }
 
@@ -110,12 +111,12 @@ struct addRappelView: View {
                     VStack (alignment: .leading) {
                         Text("Liste des médicaments sélectionnés:")
                             .font(.headline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .background(.gray.opacity(0.0))
                         Text("(Veuillez ajouter vos dosages)")
                             .font(.subheadline)
-                            .fontWeight(.thin)
+                            .fontWeight(.regular)
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
                             .background(.gray.opacity(0.0))
@@ -138,9 +139,11 @@ struct addRappelView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")
+                        .frame(width: 260, height: 11)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color.accentColor).cornerRadius(10)
+                        .background(Color.accentColor)
+                        .cornerRadius(8)
                 }
             })
             .padding([.leading, .bottom, .trailing], 20.0)

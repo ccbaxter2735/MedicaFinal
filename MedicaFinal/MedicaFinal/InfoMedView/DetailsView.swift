@@ -11,46 +11,52 @@ struct DetailMedView: View {
     var med: Medicament
     var body: some View {
         ScrollView {
-            VStack {
+            VStack (alignment: .leading) {
                 Image(med.imgMed)
                     .resizable()
                     .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width - 10)
                 Text(med.name)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.thin)
+                    .font(.title)
+                    .padding(.horizontal, 20)
+                    .fontWeight(.bold)
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.leading)
                     .background(.gray.opacity(0.0))
                 Text(med.detailMed)
                     .font(.title3)
-                    .fontWeight(.thin)
+                    .padding(.horizontal, 20)
+                    .fontWeight(.regular)
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.leading)
                     .background(.gray.opacity(0.0))
-                HStack (alignment: .center){
+                VStack (alignment: .leading){
                     Text("Type d'administration du médicament :")
                         .font(.body)
-                        .fontWeight(.thin)
+                        .fontWeight(.regular)
                         .foregroundColor(Color.black)
                         .multilineTextAlignment(.leading)
                         .background(.gray.opacity(0.0))
                     Spacer()
-                    Text(med.typeAdmin.rawValue)
-                        .font(.body)
-                        .fontWeight(.thin)
-                        .foregroundColor(Color.black)
-                        .multilineTextAlignment(.leading)
-                        .background(.gray.opacity(0.0))
-                    Image(med.typeAdmin.rawValue)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 25)
+                    HStack {
+                        Text(med.typeAdmin.rawValue)
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                            .background(.gray.opacity(0.0))
+                        Image(med.typeAdmin.rawValue)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25)
+                    }
                 }
-                .padding(10)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
             }
+            
         }
-
+        
     }
 }
 

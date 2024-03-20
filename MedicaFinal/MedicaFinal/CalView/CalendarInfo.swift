@@ -25,7 +25,7 @@ struct MedList: Hashable, Identifiable {
 
 
     let rapLists: [RapList] = [
-        RapList(name: "Epilepsi",
+        RapList(name: "Epilepsie",
                 medi: [MedList(name: "Dépakine"),
                        MedList(name: "Carbamazéphine"),
                        MedList(name: "Valproate de sodium"),

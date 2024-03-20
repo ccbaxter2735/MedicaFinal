@@ -48,12 +48,14 @@ struct RappelView: View {
                     NavigationLink(destination: addRappelView(newRappel: tabRappel, tabMedicament: tabMedicament)) {
                         // MARK: vue d'ajout de rappel
                         Text("Créer nouveau rappel")
+                            .frame(width: 260, height: 11)
                             .padding()
                             .foregroundColor(.white)
                             .background(Color.accentColor)
-                            .cornerRadius(10)
+                            .cornerRadius(8)
+
                     }
-                    .padding([.leading, .bottom, .trailing], 30)
+                    .padding([.leading, .bottom, .trailing], 20)
                 })
             .navigationTitle("Rappel")
             .background(.white)
