@@ -7,12 +7,21 @@
 
 import Foundation
 
-struct Ordonnance : Identifiable {
-    var id = UUID()
-    var dateEmission : String
-    var imgOrdonnance : String
-    var renouvellement : Int
-    var index : Int
+
+
+class Ordonnance : Identifiable, ObservableObject {
+    @Published var id = UUID()
+    @Published var dateEmission : String
+    @Published var imgOrdonnance : String
+    @Published var renouvellement : Int
+    @Published var index : Int
     
+    init(id: UUID = UUID(), dateEmission: String, imgOrdonnance: String, renouvellement: Int = 0, index: Int) {
+        self.id = id
+        self.dateEmission = dateEmission
+        self.imgOrdonnance = imgOrdonnance
+        self.renouvellement = renouvellement
+        self.index = index
+    }
     
 }

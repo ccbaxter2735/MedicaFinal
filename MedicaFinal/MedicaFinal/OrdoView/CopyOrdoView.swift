@@ -25,47 +25,41 @@ struct PickerRenouvellement: View {
     }
 }
 
+struct detailOrdo: View {
+    @ObservedObject var ordo: Ordonnance
+    var body: some View {
+        HStack (alignment: .center) {
+            VStack(alignment: .leading){
+                
+                Text("Ordonnance du \(ordo.dateEmission)")
+                    .font(.headline)
+            }
+            .padding(.trailing)
+            VStack(alignment: .trailing){
+                Text("Renouvellement : \(ordo.renouvellement)/3")
+                    .font(.subheadline)
+                Stepper("", value: $ordo.renouvellement, in: 0...4)
+                //                    .font(.caption)
+                
+            }
+            .padding(.leading)
+        }
+    }
+}
+
 struct CopyOrdoView: View {
-    @State var nombreDerenouvellement: [Int] = Array(repeating: 0, count: 3)
+    var ordoModel: OrdonnanceModel = OrdonnanceModel()
     
-    
-    
-    
-    var i: Int = 0
-    @State var ordoModel = OrdonnanceModel()
     var body: some View {
         NavigationStack{
             List {
                 Section {
                     ForEach(ordoModel.filterOrdoValides()){
                         ordonnance in
-                        HStack{
-                            VStack(alignment: .leading){
-                                
-                                Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
-                                
-                                
-                            }
-                            .padding(.trailing)
-                            
-                            
-                            VStack(alignment: .leading){
-                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
-                                
-                                
-                                    .font(.caption)
-                                
-                            }
-                            .padding(.leading)
-                        }
-                        
-                        
-                        
-                        
+                        detailOrdo(ordo: ordonnance)
                     }
                     .padding(.vertical)
-                    .navigationTitle("Ordonnances en cours")
+                    .navigationTitle("Ordonnances")
                     .pickerStyle(.menu)
                     
                 } header: {
@@ -73,31 +67,15 @@ struct CopyOrdoView: View {
                 }
                 
                 Section {
-                    ForEach(ordoModel.filterOrdoNonValides()){ ordonnance in
-                        HStack{
-                            VStack(alignment: .leading){
-                                
-                                Text("Ordonnance du \(ordonnance.dateEmission)")
-                                    .font(.caption)
-                                
-                                
-                            }
-                            .padding(.trailing)
-                            
-                            
-                            VStack(alignment: .leading){
-                                PickerRenouvellement(nombreDerenouvellement: $nombreDerenouvellement[ordonnance.index])
-                                
-                                
-                                    .font(.caption)
-                                
-                            }
-                            .padding(.leading)
-                        }
-                        
+                    ForEach(ordoModel.filterOrdoNonValides()){
+                        ordonnance in
+                        detailOrdo(ordo: ordonnance)
                     }
-                } header: {
+                    .padding(.vertical)
+                    .navigationTitle("Ordonnances en cours")
+                    .pickerStyle(.menu)
                     
+                } header: {
                     Text("Ordonnances non valides")
                 }
             }
@@ -118,6 +96,6 @@ struct CopyOrdoView: View {
 }
 
 #Preview {
-    CopyOrdoView()
+    CopyOrdoView(ordoModel: OrdonnanceModel())
 }
 
