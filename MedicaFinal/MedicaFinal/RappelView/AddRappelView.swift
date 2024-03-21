@@ -82,7 +82,6 @@ struct addRappelView: View {
                         }
                         TimePicker(selectedTime: $selectedTime)
                             .frame(height: 35)
-                        Text(transformDateToHourMin(date: selectedTime))
                     }
                     Divider()
                     HStack {
