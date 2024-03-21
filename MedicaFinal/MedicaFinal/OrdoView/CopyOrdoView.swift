@@ -29,13 +29,29 @@ struct detailOrdo: View {
 }
 
 struct CopyOrdoView: View {
-    var ordoModel: OrdonnanceModel = OrdonnanceModel()
+    @StateObject var ordoModel: OrdonnanceModel = OrdonnanceModel()
+    
+    func filterOrdoValides(ordoModel: OrdonnanceModel) -> [Ordonnance] {
+        var newOrdo: OrdonnanceModel = OrdonnanceModel()
+        newOrdo.ordonnances = ordoModel.ordonnances.filter{
+            $0.renouvellement < 3
+        }
+        return newOrdo.ordonnances
+    }
+    
+    func filterOrdoNonValides(ordoModel: OrdonnanceModel) -> [Ordonnance] {
+        var newOrdo: OrdonnanceModel = OrdonnanceModel()
+        newOrdo.ordonnances = ordoModel.ordonnances.filter{
+            $0.renouvellement >= 3
+        }
+        return newOrdo.ordonnances
+    }
     
     var body: some View {
         NavigationStack{
             List {
                 Section {
-                    ForEach(ordoModel.filterOrdoValides()){
+                    ForEach(filterOrdoValides(ordoModel: ordoModel)){
                         ordonnance in
                         NavigationLink {
                             ScrollView {
@@ -57,12 +73,21 @@ struct CopyOrdoView: View {
                 }
                 
                 Section {
-                    ForEach(ordoModel.filterOrdoNonValides()){
+                    ForEach(filterOrdoNonValides(ordoModel: ordoModel)){
                         ordonnance in
-                        detailOrdo(ordo: ordonnance)
+                        NavigationLink {
+                            ScrollView {
+                                Image(ordonnance.imgOrdonnance)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: UIScreen.main.bounds.width - 10)
+                            }
+                        } label: {
+                            detailOrdo(ordo: ordonnance)
+                        }
                     }
                     .padding(.vertical)
-                    .navigationTitle("Ordonnances en cours")
+                    .navigationTitle("Ordonnances")
                     .pickerStyle(.menu)
                     
                 } header: {

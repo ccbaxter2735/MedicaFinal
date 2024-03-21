@@ -22,21 +22,6 @@ class OrdonnanceModel : ObservableObject  {
         self.ordonnances.remove(at:  0)
        }
     
-    func filterOrdoValides() -> [Ordonnance] {
-        self.ordonnances = self.ordonnances.filter {
-             $0.renouvellement < 3
-        
-        }
-        return self.ordonnances
-    }
-    
-    func filterOrdoNonValides() -> [Ordonnance] {
-        self.ordonnances = self.ordonnances.filter{
-            $0.renouvellement >= 3
-        }
-        return self.ordonnances
-    }
-    
 }
 
 
