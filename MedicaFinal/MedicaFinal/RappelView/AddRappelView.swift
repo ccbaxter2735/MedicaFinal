@@ -135,7 +135,7 @@ struct addRappelView: View {
             }
             VStack(alignment: .center, content: {
                 Button() {
-                    newRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, typeRappel: TypeRappel.notification))
+                    newRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, finish: false, typeRappel: TypeRappel.notification))
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")

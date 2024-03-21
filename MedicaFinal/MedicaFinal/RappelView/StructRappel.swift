@@ -102,21 +102,10 @@ class TabRappel: ObservableObject {
     func checkRappelOK() {
         for it in self.rappel {
             if (it.finish == false) {
-                return
+                self.endDay = false
             }
         }
         self.endDay = true
-    }
-
-    
-    // MARK: filtre les rappels qui sont auj et les ordonnent par heure
-    func testCongrats() -> Bool {
-        for tab in self.rappel {
-            if (tab.finish == false) {
-                return false
-            }
-        }
-        return true
     }
     
     // MARK: filtre les rappels en fonction de du jour de rappel et le jour d'auj
@@ -161,7 +150,7 @@ class Rappel: Identifiable, ObservableObject {
     @Published var typeRappel: TypeRappel
     @Published var isToday: Bool?
     
-    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: Color = .white, colorT: Color = .black, finish: Bool = false, typeRappel: TypeRappel) {
+    init(id: UUID = UUID(), name: String, weekday: [Int], hPrise: String, tabMed: [RappelMed], color: Color = .white, colorT: Color = .black, finish: Bool, typeRappel: TypeRappel) {
         self.id = id
         self.name = name
         self.weekday = weekday

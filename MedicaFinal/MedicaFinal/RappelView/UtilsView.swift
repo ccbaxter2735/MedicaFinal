@@ -116,14 +116,15 @@ struct RappTitleView: View {
     
     @ObservedObject var rapp: Rappel
     @ObservedObject var tabRappel: TabRappel
+    @Binding var nb: Int
     
-    func testCongratulation (tabRappel: TabRappel) -> Bool {
+    func testCongratulation (tabRappel: TabRappel) -> Int {
         for tab in tabRappel.rappel {
             if (tab.finish == false) {
-                return false
+                return 0
             }
         }
-        return true
+        return 1
     }
 
     var body: some View {
@@ -132,9 +133,7 @@ struct RappTitleView: View {
                 Button(action: {
                     rapp.finish = !rapp.finish
                     rapp.validRappel()
-                    if (rapp.finish == true) {
-                        tabRappel.checkRappelOK()
-                    }
+                    nb = testCongratulation(tabRappel: tabRappel)
                 }, label: {
                     CheckImageView(tabM: rapp.finish)
                 })
@@ -181,14 +180,15 @@ struct MedView: View {
     @ObservedObject var rapp: Rappel
     @ObservedObject var tabM: RappelMed
     @ObservedObject var tabRappel: TabRappel
+    @Binding var nb: Int
     
-    func testCongratulation (tabRappel: TabRappel) -> Bool {
+    func testCongratulation (tabRappel: TabRappel) -> Int {
         for tab in tabRappel.rappel {
             if (tab.finish == false) {
-                return false
+                return 0
             }
         }
-        return true
+        return 1
     }
     
     var body: some View {
@@ -199,12 +199,7 @@ struct MedView: View {
                 Button(action: {
                     tabM.confirm = !tabM.confirm
                     rapp.checkMedicament()
-                    if (rapp.finish == true) {
-                        if (testCongratulation(tabRappel: tabRappel) == true) {
-                            tabRappel.endDay = true
-                        }
-                    }
-                }, label: {
+                    nb = testCongratulation(tabRappel: tabRappel)                }, label: {
                     CheckImageView(tabM: tabM.confirm)
                 })
                 VStack (alignment: .leading, spacing: 2) {
@@ -347,10 +342,10 @@ struct searchMedView: View {
     }
 }
     
-    #Preview {
-//        RappTitleView(rapp: rappelTest[0])
-        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[3], tabRappel: TabRappel())
-    //    CircleChoixJours(text: "Lun")
-    //    CircledText(text: "lun", test: false)
-//        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
-    }
+//    #Preview {
+////        RappTitleView(rapp: rappelTest[0])
+////        MedView(rapp: rappelTest[0], tabM: rappelTest[0].tabMed[3], tabRappel: TabRappel())
+//    //    CircleChoixJours(text: "Lun")
+//    //    CircledText(text: "lun", test: false)
+////        searchMedView(listMed: TabMedicament(), tabMed: TabRappelMed())
+//    }

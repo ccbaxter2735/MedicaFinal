@@ -53,13 +53,13 @@ struct CheckView: View {
                 .foregroundColor(.white)
                 .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             VStack {
-                RappTitleView(rapp: rapp, tabRappel: tabRappel)
+//                RappTitleView(rapp: rapp, tabRappel: tabRappel)
                 //                List {
                 //                    Section {
                 //                        DisclosureGroup("titre de disclosure") {
                 VStack (alignment: .leading) {
                     ForEach (rapp.tabMed) { tab in
-                        MedView(rapp: rapp, tabM: tab, tabRappel: TabRappel())
+//                        MedView(rapp: rapp, tabM: tab, tabRappel: TabRappel())
                     }
                 }
             }
