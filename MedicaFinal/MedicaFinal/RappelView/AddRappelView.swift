@@ -10,7 +10,7 @@ import SwiftUI
 struct addRappelView: View {
     // ------------- var addRappelView -----------------
     
-    @ObservedObject var newRappel: TabRappel
+    @ObservedObject var tabRappel: TabRappel
     @ObservedObject var tabMedicament: TabMedicament
     @State var name: String = ""
     @State var state: [Bool] = Array(repeating: false, count: 7)
@@ -82,6 +82,7 @@ struct addRappelView: View {
                         }
                         TimePicker(selectedTime: $selectedTime)
                             .frame(height: 35)
+                        Text(transformDateToHourMin(date: selectedTime))
                     }
                     Divider()
                     HStack {
@@ -135,7 +136,7 @@ struct addRappelView: View {
             }
             VStack(alignment: .center, content: {
                 Button() {
-                    newRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: hPrise, tabMed: tabMed.rappelMed, finish: false, typeRappel: TypeRappel.notification))
+                    tabRappel.rappel.append(Rappel(name: name, weekday: weekday, hPrise: transformDateToHourMin(date: selectedTime), tabMed: tabMed.rappelMed, color: .white, finish: false, typeRappel: TypeRappel.alarme))
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Ajouter rappel")
@@ -155,5 +156,5 @@ struct addRappelView: View {
 }
 
 #Preview {
-    addRappelView(newRappel: TabRappel(), tabMedicament: TabMedicament())
+    addRappelView(tabRappel: TabRappel(), tabMedicament: TabMedicament())
 }

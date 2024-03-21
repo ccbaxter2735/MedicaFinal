@@ -10,10 +10,10 @@ import SwiftUI
 // MARK: vue global de rappel
 struct RappelView: View {
     // ------------- var RappelView -----------------
-    @State var tabRappel: TabRappel = TabRappel()
+    @StateObject var tabRappel: TabRappel = TabRappel()
     @State var tabMedicament: TabMedicament = TabMedicament()
     @State var nb: Int = 0
-    
+
     // ---------- function RappelView ---------------
     func screenToday() -> String {
         let today: Date = Date.now
@@ -23,8 +23,20 @@ struct RappelView: View {
         return (dateFormatter.string(from: today))
     }
     
+    func sortFilterTabRappel(tabrappel: TabRappel) -> [Rappel] {
+        var new: TabRappel = TabRappel()
+        new.rappel = tabrappel.rappel.filter {
+            isDay(tabInt: $0.weekday) == true
+        }
+        new.rappel.sort {
+            $0.hPrise < $1.hPrise
+        }
+        return new.rappel;
+    }
+
     // ---------- body RappelView ---------------
     var body: some View {
+        
         NavigationStack {
                 VStack (content: {
                     Text("Aujourd'hui : \(screenToday())")
@@ -32,7 +44,7 @@ struct RappelView: View {
                         .foregroundColor(Color.blue)
                     ScrollView {
                         VStack(spacing: 10, content: {
-                            ForEach(tabRappel.sortFilterTabRappel()) { tab in
+                            ForEach(sortFilterTabRappel(tabrappel: tabRappel)) { tab in
                                 CheckRappelView(rapp: tab, tabRappel: tabRappel, nb: $nb)
                                     .padding(10)
                             }
@@ -46,7 +58,7 @@ struct RappelView: View {
                     }
                     .background(.thinMaterial)
                     Spacer()
-                    NavigationLink(destination: addRappelView(newRappel: tabRappel, tabMedicament: tabMedicament)) {
+                    NavigationLink(destination: addRappelView(tabRappel: tabRappel, tabMedicament: tabMedicament)) {
                         // MARK: vue d'ajout de rappel
                         Text("Créer nouveau rappel")
                             .frame(width: 260, height: 11)

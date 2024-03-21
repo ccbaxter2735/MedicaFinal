@@ -228,6 +228,13 @@ var medicament: [Medicament] = [
     Medicament(name: "Doliprane 500mg", detailMed: "super medoc magnifique", typeAdmin: TypeAdmin.comprime, imgTypeAdmin: "comprime", imgMed: "Doliprane_500mg")
 ]
 
+
+
+var rappMed: [RappelMed] = [
+    RappelMed(med: baseDonneesMed[0], confirm: false, dosage: 2),
+    RappelMed(med: baseDonneesMed[1], confirm: false, dosage: 1)
+]
+
 // MARK: Example tab de rappel
 var rappelTest: [Rappel] = [
     Rappel(name: "Traitement epilepsie", weekday: [1, 2, 3, 4, 5, 6], hPrise: "17:00", tabMed: [
