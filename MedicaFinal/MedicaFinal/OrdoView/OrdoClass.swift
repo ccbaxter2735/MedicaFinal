@@ -29,7 +29,7 @@ var ordoExemple : [Ordonnance] = [
 
 Ordonnance(dateEmission: "22-03-24", imgOrdonnance: "ordonnance", renouvellement: 1, index: 0),
 Ordonnance(dateEmission: "10-10-23", imgOrdonnance: "ordonnance", renouvellement: 2, index: 1),
-Ordonnance(dateEmission: "13-02-24", imgOrdonnance: "ordonnance", renouvellement: 4,  index: 2)
+Ordonnance(dateEmission: "13-02-24", imgOrdonnance: "ordonnance", renouvellement: 3,  index: 2)
 
 
 ]

@@ -14,7 +14,7 @@ class Ordonnance : Identifiable, ObservableObject {
     @Published var renouvellement : Int
     @Published var index : Int
     
-    init(id: UUID = UUID(), dateEmission: String, imgOrdonnance: String, renouvellement: Int = 0, index: Int) {
+    init(id: UUID = UUID(), dateEmission: String, imgOrdonnance: String, renouvellement: Int = 1, index: Int) {
         self.id = id
         self.dateEmission = dateEmission
         self.imgOrdonnance = imgOrdonnance

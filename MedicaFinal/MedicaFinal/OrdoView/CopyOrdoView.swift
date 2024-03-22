@@ -9,19 +9,26 @@ import SwiftUI
 
 struct detailOrdo: View {
     @ObservedObject var ordo: Ordonnance
+    var tabColor: [Color] = [.green, .orange, .red]
     var body: some View {
         HStack (alignment: .center) {
             VStack(alignment: .leading){
-                
                 Text("Ordonnance du \(ordo.dateEmission)")
                     .font(.headline)
             }
             .padding(.trailing)
             VStack(alignment: .trailing){
-                Text("Renouv. : \(ordo.renouvellement)/3  ")
+                Text("Renouv. : \(ordo.renouvellement) / 3  ")
                     .font(.subheadline)
                     .multilineTextAlignment(.trailing)
-                Stepper("", value: $ordo.renouvellement, in: 0...4)
+                    .foregroundColor(tabColor[ordo.renouvellement - 1])
+                if (ordo.renouvellement == 3) {
+                    Text("Périmée    ")
+                        .font(.subheadline)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.red)
+                }
+                Stepper("", value: $ordo.renouvellement, in: 1...3)
             }
             .padding(.trailing)
         }
@@ -32,7 +39,7 @@ struct CopyOrdoView: View {
     @StateObject var ordoModel: OrdonnanceModel = OrdonnanceModel()
     
     func filterOrdoValides(ordoModel: OrdonnanceModel) -> [Ordonnance] {
-        var newOrdo: OrdonnanceModel = OrdonnanceModel()
+        let newOrdo: OrdonnanceModel = OrdonnanceModel()
         newOrdo.ordonnances = ordoModel.ordonnances.filter{
             $0.renouvellement < 3
         }
@@ -40,7 +47,7 @@ struct CopyOrdoView: View {
     }
     
     func filterOrdoNonValides(ordoModel: OrdonnanceModel) -> [Ordonnance] {
-        var newOrdo: OrdonnanceModel = OrdonnanceModel()
+        let newOrdo: OrdonnanceModel = OrdonnanceModel()
         newOrdo.ordonnances = ordoModel.ordonnances.filter{
             $0.renouvellement >= 3
         }
@@ -67,11 +74,9 @@ struct CopyOrdoView: View {
                     .padding(.vertical)
                     .navigationTitle("Ordonnances")
                     .pickerStyle(.menu)
-                    
                 } header: {
                     Text("Ordonnances valides")
                 }
-                
                 Section {
                     ForEach(filterOrdoNonValides(ordoModel: ordoModel)){
                         ordonnance in
@@ -96,7 +101,6 @@ struct CopyOrdoView: View {
             }
             .foregroundStyle(.black)
             NavigationLink{
-                
                 OCRView()
             } label: {
                 Text("Ajouter une ordonnance")

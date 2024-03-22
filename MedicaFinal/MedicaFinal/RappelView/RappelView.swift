@@ -24,7 +24,7 @@ struct RappelView: View {
     }
     
     func sortFilterTabRappel(tabrappel: TabRappel) -> [Rappel] {
-        var new: TabRappel = TabRappel()
+        let new: TabRappel = TabRappel()
         new.rappel = tabrappel.rappel.filter {
             isDay(tabInt: $0.weekday) == true
         }
